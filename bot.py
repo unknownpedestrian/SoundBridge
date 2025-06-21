@@ -32,6 +32,16 @@ def main():
         logger.info("Starting SoundBridge...")
         logger.info("🎵 SoundBridge - Discord radio bot")
         
+        # Start keep-alive server for cloud deployment
+        try:
+            from keep_alive import start_keep_alive
+            start_keep_alive()
+            logger.info("Keep-alive server started for cloud deployment")
+        except ImportError:
+            logger.info("Keep-alive server not available (running locally)")
+        except Exception as e:
+            logger.warning(f"Failed to start keep-alive server: {e}")
+        
         # Import and create the application
         from services.bot_application import create_application
         
