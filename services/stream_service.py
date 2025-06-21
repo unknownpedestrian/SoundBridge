@@ -404,10 +404,9 @@ class StreamService:
                 raise RuntimeError("Voice connection lost during stabilization")
             
             # Check 4: Verify voice client is ready for audio
-            # Check if the voice client has proper session state
-            if hasattr(voice_client, 'ws') and voice_client.ws:
-                if voice_client.ws.closed:
-                    raise RuntimeError("Voice websocket is closed")
+            # Basic check that websocket exists (Discord.py handles internal state)
+            if not hasattr(voice_client, 'ws') or not voice_client.ws:
+                raise RuntimeError("Voice websocket is not available")
             
             # Check 5: Test connection health with a small delay
             # This ensures Discord's session is fully established
