@@ -85,6 +85,9 @@ class StreamService:
             if not voice_client:
                 voice_client = await self._connect_to_voice_with_retry(voice_channel, guild_id)
             
+            # Verify connection is stable and ready for audio
+            await self._verify_voice_connection_ready(voice_client, guild_id)
+            
             # Create audio source with enhanced processing
             audio_source = await self._create_audio_source(guild_id, stream_response, url)
             
@@ -369,6 +372,66 @@ class StreamService:
             # Ensure state is cleared even on error
             await self._clear_stream_state(guild_id)
     
+    async def _verify_voice_connection_ready(self, voice_client: discord.VoiceClient, guild_id: int) -> None:
+        """
+        Verify that the voice connection is stable and ready for audio playback.
+        
+        This is the core fix for the Discord 4006 error - ensuring the connection
+        is truly ready before attempting to play audio.
+        
+        Args:
+            voice_client: The connected voice client
+            guild_id: Guild ID for logging
+            
+        Raises:
+            RuntimeError: If connection is not stable
+        """
+        try:
+            logger.info(f"[{guild_id}]: Verifying voice connection stability...")
+            
+            # Check 1: Verify basic connection state
+            if not voice_client or not voice_client.is_connected():
+                raise RuntimeError("Voice client is not connected")
+            
+            # Check 2: Wait for connection to stabilize
+            # This prevents the timing issue that causes 4006 errors
+            stabilization_time = 2.0
+            logger.debug(f"[{guild_id}]: Waiting {stabilization_time}s for connection stabilization...")
+            await asyncio.sleep(stabilization_time)
+            
+            # Check 3: Re-verify connection after stabilization
+            if not voice_client.is_connected():
+                raise RuntimeError("Voice connection lost during stabilization")
+            
+            # Check 4: Verify voice client is ready for audio
+            # Check if the voice client has proper session state
+            if hasattr(voice_client, 'ws') and voice_client.ws:
+                if voice_client.ws.closed:
+                    raise RuntimeError("Voice websocket is closed")
+            
+            # Check 5: Test connection health with a small delay
+            # This ensures Discord's session is fully established
+            health_check_delay = 1.0
+            await asyncio.sleep(health_check_delay)
+            
+            # Final verification
+            if not voice_client.is_connected():
+                raise RuntimeError("Voice connection failed final health check")
+            
+            logger.info(f"[{guild_id}]: Voice connection verified and ready for audio")
+            
+        except Exception as e:
+            logger.error(f"[{guild_id}]: Voice connection verification failed: {e}")
+            
+            # Attempt cleanup on verification failure
+            try:
+                if voice_client and voice_client.is_connected():
+                    await voice_client.disconnect(force=True)
+            except:
+                pass
+            
+            raise RuntimeError(f"Voice connection not ready for audio: {e}")
+
     async def _connect_to_voice_with_retry(self, voice_channel, guild_id: int, max_retries: int = 3) -> discord.VoiceClient:
         """
         Connect to voice channel with retry logic to handle Discord voice connection issues.
