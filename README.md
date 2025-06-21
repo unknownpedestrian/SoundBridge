@@ -2,6 +2,8 @@
 
 **SoundBridge** is a Discord radio streaming bot with audio processing, Second Life virtual world integration, interactive UI components, and enterprise-grade monitoring. Built from the ground up with modern Python architecture, SoundBridge is a comprehensive audio platform designed for professional streaming and cross-platform integration.
 
+Based on: https://github.com/CGillen/BunBotPython/
+
 ## ✨ **Key Features**
 
 ### 🎧 **Advanced Audio Streaming**
