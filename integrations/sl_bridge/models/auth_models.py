@@ -45,7 +45,7 @@ class SLToken(BaseModel):
     guild_id: int = Field(..., description="Associated Discord guild ID")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
                 "token_type": "bearer",

@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# Databases
+soundbridge.db
+
+# log
+log.txt
+
 # History
 .history
 

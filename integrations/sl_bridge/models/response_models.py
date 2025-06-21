@@ -20,7 +20,7 @@ class SLResponse(BaseModel):
         json_encoders = {
             datetime: lambda v: v.isoformat()
         }
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "success": True,
                 "message": "Operation completed successfully",
@@ -42,7 +42,7 @@ class ErrorResponse(BaseModel):
         json_encoders = {
             datetime: lambda v: v.isoformat()
         }
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "success": False,
                 "error_code": "INVALID_REQUEST",
@@ -66,7 +66,7 @@ class StreamStatusResponse(BaseModel):
     connected_users: Optional[int] = Field(None, description="Number of users in voice channel")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "is_playing": True,
                 "stream_url": "http://ice1.somafm.com/groovesalad-256-mp3",
@@ -106,7 +106,7 @@ class FavoritesListResponse(BaseModel):
     total_pages: Optional[int] = Field(None, description="Total pages (if paginated)")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "favorites": [
                     {
@@ -150,7 +150,7 @@ class AudioInfoResponse(BaseModel):
     guild_id: int = Field(..., description="Discord guild ID")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "config": {
                     "master_volume": 0.8,
@@ -200,7 +200,7 @@ class ServerInfoResponse(BaseModel):
     api_version: str = Field(default="v1", description="API version")
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "status": "running",
                 "version": "1.0.0",
@@ -225,7 +225,7 @@ class HealthCheckResponse(BaseModel):
         json_encoders = {
             datetime: lambda v: v.isoformat()
         }
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "status": "healthy",
                 "checks": {
