@@ -81,9 +81,9 @@ class StreamService:
             if not stream_response:
                 raise shout_errors.StreamOffline("Failed to connect to stream")
             
-            # Connect to voice channel
+            # Connect to voice channel with retry logic
             if not voice_client:
-                voice_client = await voice_channel.connect()
+                voice_client = await self._connect_to_voice_with_retry(voice_channel, guild_id)
             
             # Create audio source with enhanced processing
             audio_source = await self._create_audio_source(guild_id, stream_response, url)
@@ -369,11 +369,67 @@ class StreamService:
             # Ensure state is cleared even on error
             await self._clear_stream_state(guild_id)
     
+    async def _connect_to_voice_with_retry(self, voice_channel, guild_id: int, max_retries: int = 3) -> discord.VoiceClient:
+        """
+        Connect to voice channel with retry logic to handle Discord voice connection issues.
+        
+        Args:
+            voice_channel: Discord voice channel to connect to
+            guild_id: Guild ID for logging
+            max_retries: Maximum number of connection attempts
+            
+        Returns:
+            Connected voice client
+            
+        Raises:
+            Exception: If all connection attempts fail
+        """
+        last_error = None
+        
+        for attempt in range(max_retries):
+            try:
+                logger.info(f"[{guild_id}]: Voice connection attempt {attempt + 1}/{max_retries}")
+                
+                # Add a small delay between attempts
+                if attempt > 0:
+                    await asyncio.sleep(2.0 * attempt)
+                
+                # Try to connect with timeout
+                voice_client = await asyncio.wait_for(
+                    voice_channel.connect(timeout=30.0, reconnect=True),
+                    timeout=35.0
+                )
+                
+                logger.info(f"[{guild_id}]: Voice connection successful on attempt {attempt + 1}")
+                return voice_client
+                
+            except asyncio.TimeoutError as e:
+                last_error = e
+                logger.warning(f"[{guild_id}]: Voice connection timeout on attempt {attempt + 1}: {e}")
+                
+            except discord.errors.ConnectionClosed as e:
+                last_error = e
+                logger.warning(f"[{guild_id}]: Voice connection closed on attempt {attempt + 1}: {e}")
+                
+                # For code 4006 (session no longer valid), wait longer before retry
+                if hasattr(e, 'code') and e.code == 4006:
+                    logger.info(f"[{guild_id}]: Session invalid (4006), waiting longer before retry...")
+                    await asyncio.sleep(5.0)
+                
+            except Exception as e:
+                last_error = e
+                logger.warning(f"[{guild_id}]: Voice connection error on attempt {attempt + 1}: {e}")
+        
+        # All attempts failed
+        logger.error(f"[{guild_id}]: Failed to connect to voice after {max_retries} attempts. Last error: {last_error}")
+        raise RuntimeError(f"Failed to connect to voice channel after {max_retries} attempts: {last_error}")
+
     def _is_valid_url(self, url: str) -> bool:
         """Validate URL format"""
         try:
             import validators
-            return validators.url(url)
+            result = validators.url(url)
+            return bool(result)
         except ImportError:
             # Fallback validation
             return url.startswith(('http://', 'https://'))
