@@ -1,0 +1,14 @@
+services:
+  soundbridge:
+    build: .
+    container_name: 'soundbridge'
+    volumes:
+      - ./:/app
+    environment:
+      - CLUSTER_ID=0
+  soundbridge1:
+    container_name: 'soundbridge1'
+    extends:
+      service: soundbridge
+    environment:
+      - CLUSTER_ID=1

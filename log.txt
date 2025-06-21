@@ -1,0 +1,426 @@
+2025-06-20 09:42:54,930 - discord.client - INFO - logging in using static token
+2025-06-20 09:42:55,585 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 79675a4d0c1b28f3647e43973a2fa2fd).
+2025-06-20 09:42:57,702 - discord.core.service_registry - INFO - Registered service: CommandService -> CommandService (singleton)
+2025-06-20 10:12:46,852 - discord.client - INFO - logging in using static token
+2025-06-20 10:12:47,426 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: d58dd7662773ab499cfcc45adb4c7eea).
+2025-06-20 10:12:49,549 - discord.core.service_registry - INFO - Registered service: CommandService -> CommandService (singleton)
+2025-06-20 10:13:47,988 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "play" is not found
+2025-06-20 10:22:55,667 - discord.client - INFO - logging in using static token
+2025-06-20 10:22:56,565 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 816def9eabfec0b9529b1a62a8a3f33b).
+2025-06-20 10:22:58,691 - discord.core.service_registry - INFO - Registered service: CommandService -> CommandService (singleton)
+2025-06-20 10:22:58,692 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 10:22:58,692 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 10:24:03,671 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "play" is not found
+2025-06-20 10:24:03,699 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "play" is not found
+2025-06-20 10:29:18,007 - discord.client - INFO - logging in using static token
+2025-06-20 10:29:18,618 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 6d61e53c5f89523e9f76185ec8faaac5).
+2025-06-20 10:29:20,835 - discord.core.service_registry - INFO - Registered service: CommandService -> CommandService (singleton)
+2025-06-20 10:29:20,836 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 10:29:20,836 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 10:29:25,409 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "play" is not found
+2025-06-20 10:47:41,113 - discord.client - INFO - logging in using static token
+2025-06-20 10:47:41,793 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: bdf43fc769a124be9c00d6e461d1b15d).
+2025-06-20 10:47:43,801 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 10:47:43,802 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 11:01:21,693 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session bdf43fc769a124be9c00d6e461d1b15d.
+2025-06-20 11:26:03,862 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 11:26:03,862 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 11:26:04,017 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-3e248c70.discord.media
+2025-06-20 11:26:04,167 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 12:06:56,316 - discord.client - INFO - logging in using static token
+2025-06-20 12:06:57,061 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 49e672fbe37ea295b0326132d9418e9d).
+2025-06-20 12:06:59,102 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 12:06:59,102 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 12:09:06,384 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 12:09:06,384 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 12:09:06,617 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-3e248c70.discord.media
+2025-06-20 12:09:06,742 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 12:25:17,812 - discord.voice_state - ERROR - Disconnected from voice... Reconnecting in 0.25s.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 598, in _poll_voice_ws
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1006
+2025-06-20 12:25:18,088 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 12:25:18,089 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 12:25:18,089 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 12:25:18,342 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-3e248c70.discord.media
+2025-06-20 12:25:18,472 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 14:44:24,540 - discord.core.service_registry - INFO - Registered service: MetricsCollector -> factory (singleton)
+2025-06-20 14:44:24,541 - discord.core.service_registry - INFO - Registered service: AlertManager -> factory (singleton)
+2025-06-20 14:44:24,541 - discord.client - INFO - logging in using static token
+2025-06-20 14:44:25,293 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 48d35d1972f74dc562cf6dabca9212b8).
+2025-06-20 14:44:27,299 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 14:44:27,300 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 14:44:59,606 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 14:44:59,607 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 14:44:59,705 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:44:59,797 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 1.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:44:59,799 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:45:00,815 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 2)
+2025-06-20 14:45:00,989 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:45:01,071 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 3.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:45:01,073 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:45:04,080 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 3)
+2025-06-20 14:45:04,220 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:45:04,370 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 5.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:45:04,371 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:45:09,377 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 4)
+2025-06-20 14:45:09,471 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:45:09,554 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 7.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:45:09,555 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:45:16,569 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 5)
+2025-06-20 14:45:16,719 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:45:16,796 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 9.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:45:16,797 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:45:25,804 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 14:45:25,805 - discord.voice_state - INFO - Disconnecting from voice normally, close code 1000.
+2025-06-20 14:45:25,805 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:52:34,229 - discord.core.service_registry - INFO - Registered service: MetricsCollector -> factory (singleton)
+2025-06-20 14:52:34,229 - discord.core.service_registry - INFO - Registered service: AlertManager -> factory (singleton)
+2025-06-20 14:52:34,230 - discord.client - INFO - logging in using static token
+2025-06-20 14:52:34,820 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: a55fc2a45979ff651043a2c0bc76b912).
+2025-06-20 14:52:36,823 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 14:52:36,824 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 14:52:45,241 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 14:52:45,241 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 14:52:45,250 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 14:52:45,251 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 14:52:45,506 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:52:45,587 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 1.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:52:45,588 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:52:45,636 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:52:46,596 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 2)
+2025-06-20 14:52:46,753 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:52:46,833 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 3.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:52:46,834 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:52:49,846 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 3)
+2025-06-20 14:52:49,972 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:52:50,061 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 5.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:52:50,062 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:52:55,067 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 4)
+2025-06-20 14:52:55,211 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:52:55,294 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 7.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:52:55,295 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:53:02,306 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 5)
+2025-06-20 14:53:02,457 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw09-f2c088b0.discord.media
+2025-06-20 14:53:02,547 - discord.voice_state - ERROR - Failed to connect to voice... Retrying in 9.0s...
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 413, in _inner_connect
+    await self._handshake_websocket()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 583, in _handshake_websocket
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4006
+2025-06-20 14:53:02,549 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:53:11,558 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 14:53:11,559 - discord.voice_state - INFO - Disconnecting from voice normally, close code 1000.
+2025-06-20 14:53:11,559 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:53:15,254 - discord.voice_state - INFO - Timed out connecting to voice
+2025-06-20 14:53:15,254 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 14:53:15,255 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 15:12:42,482 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session 48d35d1972f74dc562cf6dabca9212b8.
+2025-06-20 16:38:39,500 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session 48d35d1972f74dc562cf6dabca9212b8.
+2025-06-20 16:46:19,738 - discord.core.service_registry - INFO - Registered service: MetricsCollector -> factory (singleton)
+2025-06-20 16:46:19,738 - discord.core.service_registry - INFO - Registered service: AlertManager -> factory (singleton)
+2025-06-20 16:46:19,739 - discord.client - INFO - logging in using static token
+2025-06-20 16:46:20,436 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: a8545a6ce55282db742ce57c24584409).
+2025-06-20 16:46:22,440 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 16:46:22,440 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 16:46:29,873 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 16:46:29,873 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 16:46:29,946 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 16:46:30,060 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 16:52:35,277 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 16:52:35,278 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 16:52:35,278 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 16:52:35,279 - discord.client - INFO - logging in using static token
+2025-06-20 16:52:35,922 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: db2395774777c457b3854b1bd14d8386).
+2025-06-20 16:52:37,931 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 16:52:37,932 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 16:53:09,099 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 16:53:09,099 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 16:53:09,328 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 16:53:09,457 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:04:29,629 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:04:29,629 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:04:29,630 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:04:29,631 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:04:29,631 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:04:29,631 - discord.core.config_manager - INFO - ConfigurationManager initialized for environment: development
+2025-06-20 17:04:29,631 - discord.audio.audio_processor - INFO - AudioProcessor initialized
+2025-06-20 17:04:29,632 - discord.audio.volume_manager - INFO - VolumeManager initialized
+2025-06-20 17:04:29,632 - discord.audio.effects_chain - INFO - EffectsChain initialized
+2025-06-20 17:04:29,632 - discord.audio.mixer - INFO - AudioMixer initialized
+2025-06-20 17:05:22,485 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:05:22,485 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:05:22,486 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:05:22,487 - discord.client - INFO - logging in using static token
+2025-06-20 17:05:23,115 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 4f3ab36d9feaa7fd86cfe89b306e1285).
+2025-06-20 17:05:25,126 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:05:25,126 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:05:41,508 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:05:41,508 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:05:41,581 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:05:41,711 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:06:15,225 - discord.core.config_manager - INFO - ConfigurationManager initialized for environment: development
+2025-06-20 17:06:15,226 - discord.audio.effects_chain - INFO - EffectsChain initialized
+2025-06-20 17:06:15,227 - discord.audio.effects_chain - INFO - [1287597249672515638]: Added equalizer effect: 5df6ad10
+2025-06-20 17:06:15,227 - discord.audio.effects_chain - INFO - [1287597249672515638]: Set EQ - Bass: 0.0, Mid: 0.0, Treble: 0.0
+2025-06-20 17:08:43,850 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:08:43,851 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:08:43,851 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:08:43,851 - discord.client - INFO - logging in using static token
+2025-06-20 17:08:44,522 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: c89e8e4f6ba395498decc0958ced632e).
+2025-06-20 17:08:46,536 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:08:46,536 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:09:11,411 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:09:11,411 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:09:11,497 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:09:11,629 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:10:19,123 - discord.core.config_manager - INFO - ConfigurationManager initialized for environment: development
+2025-06-20 17:10:19,123 - discord.audio.effects_chain - INFO - EffectsChain initialized
+2025-06-20 17:10:19,124 - discord.audio.effects_chain - INFO - [1287597249672515638]: Added equalizer effect: e2a4fe2b
+2025-06-20 17:10:19,124 - discord.audio.effects_chain - INFO - [1287597249672515638]: Set EQ - Bass: 6.0, Mid: 1.0, Treble: 3.5
+2025-06-20 17:19:30,071 - discord.voice_state - ERROR - Disconnected from voice... Reconnecting in 1.73s.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 598, in _poll_voice_ws
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1006
+2025-06-20 17:19:31,818 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 17:19:31,819 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:19:31,819 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:19:31,925 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:19:32,049 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:28:18,996 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:28:18,996 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:28:18,997 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:29:38,152 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:29:38,153 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:29:38,153 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:29:38,153 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:29:38,153 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:29:38,154 - discord.ui.views.favorites_view - INFO - Created FavoritesView for guild 12345: 2 favorites, page 0/1
+2025-06-20 17:29:38,154 - discord.ui.views.favorites_view - ERROR - Error adding favorite buttons: 'str' object has no attribute '__name__'
+2025-06-20 17:29:54,845 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:29:54,845 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:29:54,846 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:29:54,846 - discord.client - INFO - logging in using static token
+2025-06-20 17:29:55,547 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 5e78a55b9766d448395f0aaf1fb2be17).
+2025-06-20 17:29:57,557 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:29:57,558 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:30:24,252 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:30:24,252 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:30:24,253 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:30:24,253 - discord.client - INFO - logging in using static token
+2025-06-20 17:30:24,835 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 8e79fed66a2e7c5d565f284db2694f36).
+2025-06-20 17:30:26,858 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:30:26,858 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:30:39,663 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:30:39,664 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:30:39,751 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:30:39,878 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:30:57,746 - discord.core.config_manager - INFO - ConfigurationManager initialized for environment: development
+2025-06-20 17:30:57,746 - discord.audio.audio_processor - INFO - AudioProcessor initialized
+2025-06-20 17:30:57,746 - discord.audio.volume_manager - INFO - VolumeManager initialized
+2025-06-20 17:30:57,747 - discord.audio.effects_chain - INFO - EffectsChain initialized
+2025-06-20 17:31:58,341 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 17:31:58,341 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 17:31:58,341 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 17:31:58,341 - discord.client - INFO - logging in using static token
+2025-06-20 17:31:59,245 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 04b145f56a49ce89284d9b81d440e503).
+2025-06-20 17:32:01,279 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 17:32:01,280 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 17:32:06,872 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:32:06,872 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:32:07,051 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:32:07,181 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:33:04,381 - discord.ui.views.favorites_view - INFO - Created FavoritesView for guild 1287597249672515638: 2 favorites, page 0/1
+2025-06-20 17:34:05,462 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 17:34:05,478 - discord.player - ERROR - Calling the after function failed.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\player.py", line 784, in _call_after
+    self.after(error)
+    ~~~~~~~~~~^^^^^^^
+  File "c:\Users\Panda\Desktop\Jackie's bot\BunBotPython\services\stream_service.py", line 101, in stream_finished_callback
+    asyncio.get_event_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\asyncio\events.py", line 716, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+                       % threading.current_thread().name)
+RuntimeError: There is no current event loop in thread 'audio-player:0x244fe91d940'.
+2025-06-20 17:34:05,482 - discord.player - INFO - ffmpeg process 27152 has not terminated. Waiting to terminate...
+2025-06-20 17:34:05,495 - discord.player - INFO - ffmpeg process 27152 should have terminated with a return code of 1.
+2025-06-20 17:34:20,332 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:34:20,332 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:34:20,419 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:34:20,541 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 17:34:37,802 - discord.core.config_manager - INFO - ConfigurationManager initialized for environment: development
+2025-06-20 17:34:37,802 - discord.audio.audio_processor - INFO - AudioProcessor initialized
+2025-06-20 17:34:37,802 - discord.audio.volume_manager - INFO - VolumeManager initialized
+2025-06-20 17:34:37,803 - discord.audio.effects_chain - INFO - EffectsChain initialized
+2025-06-20 17:40:11,421 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 17:40:11,426 - discord.player - ERROR - Calling the after function failed.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\player.py", line 784, in _call_after
+    self.after(error)
+    ~~~~~~~~~~^^^^^^^
+  File "c:\Users\Panda\Desktop\Jackie's bot\BunBotPython\services\stream_service.py", line 101, in stream_finished_callback
+    asyncio.get_event_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\asyncio\events.py", line 716, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+                       % threading.current_thread().name)
+RuntimeError: There is no current event loop in thread 'audio-player:0x2449606c690'.
+2025-06-20 17:40:11,428 - discord.player - INFO - ffmpeg process 10960 has not terminated. Waiting to terminate...
+2025-06-20 17:40:11,439 - discord.player - INFO - ffmpeg process 10960 should have terminated with a return code of 1.
+2025-06-20 17:40:18,367 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 17:40:18,367 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 17:40:18,449 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 17:40:18,593 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 18:02:14,350 - discord.voice_state - INFO - Disconnected from voice by force... potentially reconnecting.
+2025-06-20 18:02:14,477 - discord.gateway - INFO - Shard ID 0 session has been invalidated.
+2025-06-20 18:02:20,278 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: b90c5d7079613484afcbd8976bad9038).
+2025-06-20 18:02:44,363 - discord.voice_state - INFO - Reconnect was unsuccessful, disconnecting from voice normally...
+2025-06-20 18:02:44,364 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 18:02:44,377 - discord.player - ERROR - Calling the after function failed.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\player.py", line 784, in _call_after
+    self.after(error)
+    ~~~~~~~~~~^^^^^^^
+  File "c:\Users\Panda\Desktop\Jackie's bot\BunBotPython\services\stream_service.py", line 101, in stream_finished_callback
+    asyncio.get_event_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\asyncio\events.py", line 716, in get_event_loop
+    raise RuntimeError('There is no current event loop in thread %r.'
+                       % threading.current_thread().name)
+RuntimeError: There is no current event loop in thread 'audio-player:0x2449606d810'.
+2025-06-20 18:02:44,379 - discord.player - INFO - ffmpeg process 27632 has not terminated. Waiting to terminate...
+2025-06-20 18:02:44,396 - discord.player - INFO - ffmpeg process 27632 should have terminated with a return code of 1.
+2025-06-20 18:02:56,359 - discord.gateway - INFO - Shard ID 0 session has been invalidated.
+2025-06-20 18:03:01,873 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 4ec058ae86a41ce47822d7cd3c003b8d).
+2025-06-20 18:03:38,046 - discord.gateway - INFO - Shard ID 0 session has been invalidated.
+2025-06-20 18:03:43,330 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 337fbf1b21e4c3ef24017e63947d7c75).
+2025-06-20 18:04:19,692 - discord.gateway - INFO - Shard ID 0 session has been invalidated.
+2025-06-20 18:04:24,990 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: ade9157cd98d38ccd9ad142c409c8812).
+2025-06-20 18:05:01,305 - discord.gateway - INFO - Shard ID 0 session has been invalidated.
+2025-06-20 18:05:06,577 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 6bb06986596f91f032112b2585cb7af4).
+2025-06-20 19:01:51,134 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session 6bb06986596f91f032112b2585cb7af4.
+2025-06-20 19:11:00,688 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-20 19:11:00,688 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-20 19:11:00,688 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-20 19:11:00,689 - discord.client - INFO - logging in using static token
+2025-06-20 19:11:01,333 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: d2707de596388333220d1ed2ec835bc8).
+2025-06-20 19:11:03,337 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-20 19:11:03,338 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-20 19:11:28,457 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 19:11:28,458 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 19:11:28,556 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 19:11:28,684 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 19:11:42,282 - discord.ui.views.favorites_view - INFO - Created FavoritesView for guild 1287597249672515638: 2 favorites, page 0/1
+2025-06-20 19:50:26,274 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session d2707de596388333220d1ed2ec835bc8.
+2025-06-20 21:02:07,069 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session d2707de596388333220d1ed2ec835bc8.
+2025-06-20 21:43:11,112 - discord.voice_state - ERROR - Disconnected from voice... Reconnecting in 1.58s.
+Traceback (most recent call last):
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\voice_state.py", line 598, in _poll_voice_ws
+    await self.ws.poll_event()
+  File "C:\Users\Panda\AppData\Roaming\Python\Python313\site-packages\discord\gateway.py", line 1037, in poll_event
+    raise ConnectionClosed(self.ws, shard_id=None, code=self._close_code)
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1006
+2025-06-20 21:43:12,726 - discord.voice_state - INFO - The voice handshake is being terminated for Channel ID 1287597250196799510 (Guild ID 1287597249672515638)
+2025-06-20 21:43:12,728 - discord.voice_state - INFO - Connecting to voice...
+2025-06-20 21:43:12,728 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-20 21:43:12,868 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: us-south10002.discord.media
+2025-06-20 21:43:12,982 - discord.voice_state - INFO - Voice connection complete.
+2025-06-20 22:12:59,358 - discord.gateway - INFO - Shard ID 0 has successfully RESUMED session d2707de596388333220d1ed2ec835bc8.
+2025-06-21 06:51:42,934 - discord.core.service_registry - INFO - Registered service: IMetricsCollector -> factory (singleton)
+2025-06-21 06:51:42,935 - discord.core.service_registry - INFO - Registered service: IAlertManager -> factory (singleton)
+2025-06-21 06:51:42,936 - discord.core.service_registry - INFO - Registered service: IHealthMonitor -> HealthMonitor (singleton)
+2025-06-21 06:51:42,936 - discord.client - INFO - logging in using static token
+2025-06-21 06:51:43,494 - discord.gateway - INFO - Shard ID 0 has connected to Gateway (Session ID: 104c3db9024e54a9107928902fc3d9f2).
+2025-06-21 06:51:45,558 - discord.core.state_manager - INFO - StateManager initialized
+2025-06-21 06:51:45,558 - discord.core.event_bus - INFO - EventBus initialized
+2025-06-21 06:52:25,490 - discord.voice_state - INFO - Connecting to voice...
+2025-06-21 06:52:25,491 - discord.voice_state - INFO - Starting voice handshake... (connection attempt 1)
+2025-06-21 06:52:25,595 - discord.voice_state - INFO - Voice handshake complete. Endpoint found: c-dfw13-076dca5c.discord.media
+2025-06-21 06:52:25,708 - discord.voice_state - INFO - Voice connection complete.
