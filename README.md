@@ -39,7 +39,7 @@ Based on: https://github.com/CGillen/BunBotPython/
 ## 🚀 **Quick Start**
 
 ### **Option 1: Add to Your Server (Hosted)**
-[![Add SoundBridge](https://img.shields.io/badge/Add%20to%20Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1385627473324019793)
+[![Add SoundBridge](https://img.shields.io/badge/Add%20to%20Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)]([https://discord.com/oauth2/authorize?client_id=1385627473324019793](https://discord.com/oauth2/authorize?client_id=1385627473324019793&permissions=1168649901399936&integration_type=0&scope=bot))
 
 ### **Option 2: Self-Host with Docker**
 ```bash
