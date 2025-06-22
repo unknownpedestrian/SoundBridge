@@ -85,8 +85,8 @@ class StreamService:
             if not voice_client:
                 voice_client = await self._connect_to_voice_with_retry(voice_channel, guild_id)
             
-            # Verify connection is stable and ready for audio
-            await self._verify_voice_connection_ready(voice_client, guild_id)
+            # Brief stabilization wait for voice connection
+            await asyncio.sleep(0.5)
             
             # Create audio source with enhanced processing
             audio_source = await self._create_audio_source(guild_id, stream_response, url)
