@@ -91,18 +91,33 @@ class StreamService:
             # Create audio source with enhanced processing
             audio_source = await self._create_audio_source(guild_id, stream_response, url)
             
-            # Create cleanup callback
+            # Create cleanup callback with recovery logic
             def stream_finished_callback(error):
                 if error:
                     logger.error(f"[{guild_id}]: Stream finished with error: {error}")
+                    
+                    # Check if this is a recoverable error
+                    if self._is_recoverable_error(error):
+                        logger.info(f"[{guild_id}]: Attempting automatic recovery for recoverable error")
+                        # Schedule recovery attempt
+                        asyncio.run_coroutine_threadsafe(
+                            self._attempt_stream_recovery(guild_id, str(error)), 
+                            asyncio.get_event_loop()
+                        )
+                    else:
+                        logger.info(f"[{guild_id}]: Non-recoverable error, performing cleanup")
+                        # Schedule cleanup for non-recoverable errors
+                        asyncio.run_coroutine_threadsafe(
+                            self._handle_stream_disconnect(guild_id), 
+                            asyncio.get_event_loop()
+                        )
                 else:
                     logger.info(f"[{guild_id}]: Stream finished normally")
-                
-                # Schedule proper cleanup
-                asyncio.run_coroutine_threadsafe(
-                    self._handle_stream_disconnect(guild_id), 
-                    asyncio.get_event_loop()
-                )
+                    # Schedule normal cleanup
+                    asyncio.run_coroutine_threadsafe(
+                        self._handle_stream_disconnect(guild_id), 
+                        asyncio.get_event_loop()
+                    )
             
             # Start playback
             voice_client.play(audio_source, after=stream_finished_callback)
@@ -502,6 +517,217 @@ class StreamService:
         # All attempts failed
         logger.error(f"[{guild_id}]: Failed to connect to voice after {max_retries} attempts. Last error: {last_error}")
         raise RuntimeError(f"Failed to connect to voice channel after {max_retries} attempts: {last_error}")
+
+    def _is_recoverable_error(self, error: str) -> bool:
+        """
+        Determine if an error is recoverable and should trigger automatic reconnection.
+        
+        Args:
+            error: Error message string
+            
+        Returns:
+            True if error is recoverable, False otherwise
+        """
+        error_lower = error.lower()
+        
+        # FFmpeg broken pipe errors (most common recoverable error)
+        if 'broken pipe' in error_lower:
+            return True
+        
+        # Network-related errors
+        if any(keyword in error_lower for keyword in [
+            'connection reset',
+            'connection timed out',
+            'network is unreachable',
+            'temporary failure',
+            'connection refused',
+            'timeout',
+            'connection lost',
+            'connection dropped'
+        ]):
+            return True
+        
+        # FFmpeg specific recoverable errors
+        if any(keyword in error_lower for keyword in [
+            'av_interleaved_write_frame',
+            'error writing trailer',
+            'input/output error',
+            'resource temporarily unavailable'
+        ]):
+            return True
+        
+        # Non-recoverable errors
+        if any(keyword in error_lower for keyword in [
+            'not found',
+            '404',
+            'forbidden',
+            '403',
+            'unauthorized',
+            '401',
+            'invalid url',
+            'malformed',
+            'unsupported format',
+            'codec not found'
+        ]):
+            return False
+        
+        # Default to recoverable for unknown errors (better to try than give up)
+        return True
+    
+    async def _attempt_stream_recovery(self, guild_id: int, error: str, retry_count: int = 0) -> None:
+        """
+        Attempt to recover from a stream error by reconnecting.
+        
+        Args:
+            guild_id: Discord guild ID
+            error: Original error message
+            retry_count: Current retry attempt number
+        """
+        max_retries = 3
+        retry_delays = [5, 10, 20]  # Exponential backoff in seconds
+        
+        try:
+            logger.info(f"[{guild_id}]: Starting stream recovery attempt {retry_count + 1}/{max_retries}")
+            
+            # Get guild state to check if recovery is already in progress
+            guild_state = self.state_manager.get_guild_state(guild_id)
+            if not guild_state or not guild_state.current_stream_url:
+                logger.warning(f"[{guild_id}]: No stream URL available for recovery")
+                await self._handle_stream_disconnect(guild_id)
+                return
+            
+            # Check if we've exceeded max retries
+            if retry_count >= max_retries:
+                logger.error(f"[{guild_id}]: Max recovery attempts ({max_retries}) exceeded")
+                await self._notify_recovery_failed(guild_id, guild_state.text_channel)
+                await self._handle_stream_disconnect(guild_id)
+                return
+            
+            # Notify users of recovery attempt
+            await self._notify_recovery_attempt(guild_id, guild_state.text_channel, retry_count + 1, max_retries)
+            
+            # Wait before retry (exponential backoff)
+            if retry_count < len(retry_delays):
+                delay = retry_delays[retry_count]
+            else:
+                delay = retry_delays[-1]  # Use last delay for any additional attempts
+            
+            logger.info(f"[{guild_id}]: Waiting {delay}s before recovery attempt")
+            await asyncio.sleep(delay)
+            
+            # Get the original stream URL
+            original_url = guild_state.current_stream_url
+            
+            # Try to reconnect to the stream
+            try:
+                # Test if stream is back online
+                station_info = await self._get_station_info(original_url)
+                if station_info['status'] <= 0:
+                    logger.warning(f"[{guild_id}]: Stream still offline, will retry")
+                    # Schedule next retry
+                    await self._attempt_stream_recovery(guild_id, error, retry_count + 1)
+                    return
+                
+                # Get new stream connection
+                stream_response = await self._get_stream_connection(original_url)
+                if not stream_response:
+                    logger.warning(f"[{guild_id}]: Failed to get stream connection, will retry")
+                    await self._attempt_stream_recovery(guild_id, error, retry_count + 1)
+                    return
+                
+                # Get voice client (should still be connected)
+                bot = self.service_registry.get_optional('bot')
+                if not bot:
+                    logger.error(f"[{guild_id}]: Bot instance not available for recovery")
+                    await self._handle_stream_disconnect(guild_id)
+                    return
+                
+                guild = discord.utils.get(bot.guilds, id=guild_id)
+                if not guild or not guild.voice_client:
+                    logger.warning(f"[{guild_id}]: Voice client not available, attempting to reconnect")
+                    # Try to find the voice channel and reconnect
+                    # For now, just fail and let user manually restart
+                    await self._notify_recovery_failed(guild_id, guild_state.text_channel)
+                    await self._handle_stream_disconnect(guild_id)
+                    return
+                
+                voice_client = guild.voice_client
+                
+                # Create new audio source
+                audio_source = await self._create_audio_source(guild_id, stream_response, original_url)
+                
+                # Create new callback for the recovered stream
+                def recovery_callback(error):
+                    if error:
+                        logger.error(f"[{guild_id}]: Recovered stream failed again: {error}")
+                        if self._is_recoverable_error(str(error)):
+                            asyncio.run_coroutine_threadsafe(
+                                self._attempt_stream_recovery(guild_id, str(error), retry_count + 1), 
+                                asyncio.get_event_loop()
+                            )
+                        else:
+                            asyncio.run_coroutine_threadsafe(
+                                self._handle_stream_disconnect(guild_id), 
+                                asyncio.get_event_loop()
+                            )
+                    else:
+                        logger.info(f"[{guild_id}]: Recovered stream finished normally")
+                        asyncio.run_coroutine_threadsafe(
+                            self._handle_stream_disconnect(guild_id), 
+                            asyncio.get_event_loop()
+                        )
+                
+                # Start the recovered stream
+                voice_client.play(audio_source, after=recovery_callback)
+                
+                # Update state
+                guild_state.last_updated = datetime.now(timezone.utc)
+                
+                # Notify success
+                await self._notify_recovery_success(guild_id, guild_state.text_channel)
+                
+                logger.info(f"[{guild_id}]: Stream recovery successful on attempt {retry_count + 1}")
+                
+            except Exception as recovery_error:
+                logger.error(f"[{guild_id}]: Recovery attempt {retry_count + 1} failed: {recovery_error}")
+                # Try again if we haven't exceeded max retries
+                await self._attempt_stream_recovery(guild_id, error, retry_count + 1)
+                
+        except Exception as e:
+            logger.error(f"[{guild_id}]: Critical error in stream recovery: {e}")
+            await self._handle_stream_disconnect(guild_id)
+    
+    async def _notify_recovery_attempt(self, guild_id: int, channel, attempt: int, max_attempts: int) -> None:
+        """Notify users of recovery attempt"""
+        try:
+            if channel and hasattr(channel, 'send'):
+                if attempt == 1:
+                    message = f"🔄 Stream disconnected, attempting to reconnect... (attempt {attempt}/{max_attempts})"
+                else:
+                    message = f"🔄 Reconnection attempt {attempt}/{max_attempts}..."
+                
+                await channel.send(message)
+                logger.debug(f"[{guild_id}]: Sent recovery attempt notification")
+        except Exception as e:
+            logger.warning(f"[{guild_id}]: Failed to send recovery attempt notification: {e}")
+    
+    async def _notify_recovery_success(self, guild_id: int, channel) -> None:
+        """Notify users of successful recovery"""
+        try:
+            if channel and hasattr(channel, 'send'):
+                await channel.send("✅ Stream reconnected successfully!")
+                logger.debug(f"[{guild_id}]: Sent recovery success notification")
+        except Exception as e:
+            logger.warning(f"[{guild_id}]: Failed to send recovery success notification: {e}")
+    
+    async def _notify_recovery_failed(self, guild_id: int, channel) -> None:
+        """Notify users of failed recovery"""
+        try:
+            if channel and hasattr(channel, 'send'):
+                await channel.send("❌ Unable to reconnect to stream. Please use `/play` to start a new stream.")
+                logger.debug(f"[{guild_id}]: Sent recovery failed notification")
+        except Exception as e:
+            logger.warning(f"[{guild_id}]: Failed to send recovery failed notification: {e}")
 
     def _is_valid_url(self, url: str) -> bool:
         """Validate URL format"""
