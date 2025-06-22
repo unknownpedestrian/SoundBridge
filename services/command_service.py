@@ -593,6 +593,9 @@ class CommandService:
                     await interaction.response.send_message("❌ Bot is not connected to a voice channel. Start playing music first.", ephemeral=True)
                     return
                 
+                # Send initial response immediately to claim the interaction
+                await interaction.response.send_message(f"🔊 Setting volume to {level}%...")
+                
                 voice_client = interaction.guild.voice_client
                 
                 # Try advanced audio processing first
@@ -604,10 +607,10 @@ class CommandService:
                     if volume_manager:
                         advanced_success = await volume_manager.set_master_volume(interaction.guild_id, volume_float)
                         if advanced_success:
-                            await interaction.response.send_message(f"🔊 Volume set to {level}% (Enhanced Audio)")
+                            await interaction.edit_original_response(content=f"🔊 Volume set to {level}% (Enhanced Audio)")
                             return
                 except ImportError:
-                    pass
+                    logger.debug("Advanced audio services not available - using fallback")
                 except Exception as e:
                     logger.warning(f"Advanced volume control failed: {e}")
                 
@@ -616,23 +619,24 @@ class CommandService:
                     if hasattr(voice_client, 'source') and voice_client.source:
                         if hasattr(voice_client.source, 'volume'):
                             voice_client.source.volume = volume_float
-                            await interaction.response.send_message(f"🔊 Volume set to {level}% (Basic)")
                             
                             # Store volume in guild state for persistence
                             guild_state = self.state_manager.get_guild_state(interaction.guild_id, create_if_missing=True)
                             if guild_state:
                                 guild_state.volume_level = volume_float
+                            
+                            await interaction.edit_original_response(content=f"🔊 Volume set to {level}% (Basic)")
                             return
                         else:
-                            await interaction.response.send_message("❌ Current audio source doesn't support volume control.", ephemeral=True)
+                            await interaction.edit_original_response(content="❌ Current audio source doesn't support volume control.")
                             return
                     else:
-                        await interaction.response.send_message("❌ No audio source available for volume control.", ephemeral=True)
+                        await interaction.edit_original_response(content="❌ No audio source available for volume control.")
                         return
                         
                 except Exception as e:
                     logger.error(f"Fallback volume control failed: {e}")
-                    await interaction.response.send_message("❌ Failed to set volume.", ephemeral=True)
+                    await interaction.edit_original_response(content="❌ Failed to set volume.")
                     
             except Exception as e:
                 await self.error_service.handle_command_error(interaction, e)
@@ -654,6 +658,9 @@ class CommandService:
                         await interaction.response.send_message(f"❌ {name.title()} must be between -12 and +12 dB.", ephemeral=True)
                         return
                 
+                # Send initial response
+                await interaction.response.send_message("🎚️ Adjusting equalizer settings...")
+                
                 # Try to get effects chain service
                 try:
                     from audio.interfaces import IEffectsChain
@@ -662,16 +669,16 @@ class CommandService:
                     if effects_chain:
                         success = await effects_chain.set_eq(interaction.guild_id, bass, mid, treble)
                         if success:
-                            await interaction.response.send_message(
-                                f"🎚️ EQ updated: Bass {bass:+.1f}dB, Mid {mid:+.1f}dB, Treble {treble:+.1f}dB"
+                            await interaction.edit_original_response(
+                                content=f"🎚️ EQ updated: Bass {bass:+.1f}dB, Mid {mid:+.1f}dB, Treble {treble:+.1f}dB"
                             )
                         else:
-                            await interaction.response.send_message("❌ Failed to set EQ.", ephemeral=True)
+                            await interaction.edit_original_response(content="❌ Failed to set EQ.")
                     else:
-                        await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
+                        await interaction.edit_original_response(content="❌ Audio enhancement not available.")
                         
                 except ImportError:
-                    await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
+                    await interaction.edit_original_response(content="❌ Audio enhancement not available.")
                     
             except Exception as e:
                 await self.error_service.handle_command_error(interaction, e)
@@ -687,6 +694,9 @@ class CommandService:
                     await interaction.response.send_message("❌ This command can only be used in a server.", ephemeral=True)
                     return
                 
+                # Send initial response
+                await interaction.response.send_message(f"🎵 Applying EQ preset: **{preset.title()}**...")
+                
                 # Try to get effects chain service
                 try:
                     from audio.interfaces import IEffectsChain
@@ -698,22 +708,21 @@ class CommandService:
                         
                         if preset.lower() not in [p.lower() for p in presets]:
                             preset_list = ", ".join(presets)
-                            await interaction.response.send_message(
-                                f"❌ Unknown preset. Available presets: {preset_list}", 
-                                ephemeral=True
+                            await interaction.edit_original_response(
+                                content=f"❌ Unknown preset. Available presets: {preset_list}"
                             )
                             return
                         
                         success = await effects_chain.apply_eq_preset(interaction.guild_id, preset.lower())
                         if success:
-                            await interaction.response.send_message(f"🎵 Applied EQ preset: **{preset.title()}**")
+                            await interaction.edit_original_response(content=f"🎵 Applied EQ preset: **{preset.title()}**")
                         else:
-                            await interaction.response.send_message("❌ Failed to apply preset.", ephemeral=True)
+                            await interaction.edit_original_response(content="❌ Failed to apply preset.")
                     else:
-                        await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
+                        await interaction.edit_original_response(content="❌ Audio enhancement not available.")
                         
                 except ImportError:
-                    await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
+                    await interaction.edit_original_response(content="❌ Audio enhancement not available.")
                     
             except Exception as e:
                 await self.error_service.handle_command_error(interaction, e)

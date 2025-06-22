@@ -136,20 +136,37 @@ class ErrorService:
         """Send error response to user"""
         try:
             if interaction.response.is_done():
-                # Edit existing response
-                original_response = await interaction.original_response()
-                if original_response:
-                    original_content = original_response.content or ""
-                    new_content = f"{original_content}\n{message}".strip()
-                    await interaction.edit_original_response(content=new_content)
-                else:
+                # Try to edit existing response first
+                try:
+                    original_response = await interaction.original_response()
+                    if original_response:
+                        original_content = original_response.content or ""
+                        # Only append if it's not already an error message
+                        if not original_content.startswith("❌"):
+                            new_content = f"{original_content}\n{message}".strip()
+                            await interaction.edit_original_response(content=new_content)
+                        else:
+                            # Replace with new error message
+                            await interaction.edit_original_response(content=message)
+                    else:
+                        # No original response, use followup
+                        await interaction.followup.send(message, ephemeral=True)
+                except discord.NotFound:
+                    # Original response was deleted, use followup
+                    await interaction.followup.send(message, ephemeral=True)
+                except discord.HTTPException as e:
+                    # Edit failed, try followup
+                    logger.warning(f"Failed to edit response, using followup: {e}")
                     await interaction.followup.send(message, ephemeral=True)
             else:
                 # Send new response
                 await interaction.response.send_message(message, ephemeral=True)
                 
+        except discord.HTTPException as e:
+            # All Discord API attempts failed
+            logger.error(f"Failed to send error response via Discord API: {e}")
         except Exception as e:
-            logger.error(f"Failed to send error response: {e}")
+            logger.error(f"Unexpected error sending error response: {e}")
     
     async def _log_error(self, interaction: discord.Interaction, error: Exception, 
                         error_info: Dict[str, Any]) -> None:
