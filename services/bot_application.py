@@ -251,9 +251,13 @@ class SoundBridgeApplication:
                     lifetime=ServiceLifetime.SINGLETON
                 )
                 
+                # Register VolumeManager with custom factory to pass service_registry
+                def create_volume_manager(state_manager, event_bus, config_manager):
+                    return VolumeManager(state_manager, event_bus, config_manager, self.service_registry)
+                
                 self.service_registry.register(
                     IVolumeManager, 
-                    VolumeManager, 
+                    factory=create_volume_manager,
                     lifetime=ServiceLifetime.SINGLETON
                 )
                 

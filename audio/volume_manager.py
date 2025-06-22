@@ -6,6 +6,7 @@ import logging
 import asyncio
 import time
 import math
+import os
 from typing import Dict, Any, Optional, Tuple
 from datetime import datetime, timezone
 
@@ -28,10 +29,11 @@ class VolumeManager(IVolumeManager):
     """
     
     def __init__(self, state_manager: StateManager, event_bus: EventBus, 
-                 config_manager: ConfigurationManager):
+                 config_manager: ConfigurationManager, service_registry=None):
         self.state_manager = state_manager
         self.event_bus = event_bus
         self.config_manager = config_manager
+        self.service_registry = service_registry
         
         # Volume state tracking
         self._volume_settings: Dict[int, Dict[str, float]] = {}  # guild_id -> settings
@@ -52,7 +54,39 @@ class VolumeManager(IVolumeManager):
         self._last_analysis_time: Dict[int, float] = {}
         self._analysis_interval = 0.1  # 100ms analysis interval
         
+        # Resource monitoring for Render free tier
+        self._discord_update_failures: Dict[int, int] = {}  # guild_id -> failure_count
+        self._max_failures = 3  # Circuit breaker threshold
+        
         logger.info("VolumeManager initialized")
+    
+    def _is_render_free_tier(self) -> bool:
+        """Check if running on Render free tier"""
+        return bool(os.getenv('RENDER')) and os.getenv('RENDER_SERVICE_TYPE') == 'web'
+    
+    def _check_memory_usage(self) -> float:
+        """Check current memory usage percentage"""
+        try:
+            import psutil
+            return psutil.virtual_memory().percent
+        except ImportError:
+            # psutil not available, assume safe
+            return 50.0
+        except Exception:
+            # Error checking memory, assume safe
+            return 50.0
+    
+    def _should_use_enhanced_processing(self, guild_id: int) -> bool:
+        """Determine if enhanced audio processing should be used"""
+        # Check if on Render free tier
+        if self._is_render_free_tier():
+            # Limit enhanced processing on free tier
+            memory_usage = self._check_memory_usage()
+            if memory_usage > 80:  # 80% memory usage threshold
+                logger.debug(f"[{guild_id}]: Skipping enhanced processing due to high memory usage ({memory_usage:.1f}%)")
+                return False
+        
+        return True
     
     async def set_master_volume(self, guild_id: int, volume: float) -> bool:
         """
@@ -483,10 +517,9 @@ class VolumeManager(IVolumeManager):
     
     async def _update_discord_audio_volume(self, guild_id: int, volume: float) -> bool:
         """
-        Update the Discord audio source volume in real-time.
+        Update the Discord audio source volume in real-time with timeout protection.
         
-        This is the key method that actually changes the audio output volume
-        by modifying the Discord PCMVolumeTransformer.volume property.
+        This method uses the injected service registry to avoid blocking the event loop.
         
         Args:
             guild_id: Discord guild ID
@@ -496,23 +529,43 @@ class VolumeManager(IVolumeManager):
             True if Discord audio volume was updated successfully
         """
         try:
-            # Get the bot instance to access voice clients directly
-            import discord
+            # Add timeout protection to prevent blocking
+            return await asyncio.wait_for(
+                self._update_discord_audio_volume_impl(guild_id, volume),
+                timeout=1.0
+            )
+        except asyncio.TimeoutError:
+            logger.warning(f"[{guild_id}]: Discord audio update timed out")
+            return False
+        except Exception as e:
+            logger.error(f"[{guild_id}]: Discord audio update failed: {e}")
+            return False
+    
+    async def _update_discord_audio_volume_impl(self, guild_id: int, volume: float) -> bool:
+        """
+        Implementation of Discord audio volume update using injected service registry.
+        
+        Args:
+            guild_id: Discord guild ID
+            volume: New volume level (0.0 to 1.0)
             
-            # Try to get bot from state manager or service registry
-            bot = None
-            try:
-                # Try to get from service registry if available
-                from core.service_registry import ServiceRegistry
-                registry = ServiceRegistry.get_instance()
-                if registry:
-                    bot = registry.get_service('bot')
-            except:
-                pass
+        Returns:
+            True if Discord audio volume was updated successfully
+        """
+        try:
+            # Use injected service registry (NON-BLOCKING)
+            if not self.service_registry:
+                logger.debug(f"[{guild_id}]: Service registry not available for volume update")
+                return False
             
+            # Get bot instance from injected service registry
+            bot = self.service_registry.get_optional('bot')
             if not bot:
                 logger.debug(f"[{guild_id}]: Bot instance not available for real-time volume update")
                 return False
+            
+            # Import discord here to avoid import-time dependencies
+            import discord
             
             # Find the guild
             guild = discord.utils.get(bot.guilds, id=guild_id)
@@ -540,7 +593,7 @@ class VolumeManager(IVolumeManager):
                 return False
                 
         except Exception as e:
-            logger.error(f"[{guild_id}]: Failed to update Discord audio volume: {e}")
+            logger.error(f"[{guild_id}]: Failed to update Discord audio volume implementation: {e}")
             return False
     
     def _calculate_variance(self, values: list) -> float:
