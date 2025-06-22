@@ -107,8 +107,8 @@ class StreamService:
             # Start playback
             voice_client.play(audio_source, after=stream_finished_callback)
             
-            # Update state
-            await self._update_stream_state(guild_id, url, stream_response, interaction.channel)
+            # Update state with audio source reference
+            await self._update_stream_state(guild_id, url, stream_response, interaction.channel, audio_source)
             
             # Emit events
             await self.event_bus.emit_async('stream_started',
@@ -314,7 +314,7 @@ class StreamService:
                 raise RuntimeError(f"FFmpeg not available. Error: {fallback_error}")
     
     async def _update_stream_state(self, guild_id: int, url: str, response: any, 
-                                 channel: discord.TextChannel) -> None:
+                                 channel: discord.TextChannel, audio_source: discord.AudioSource = None) -> None:
         """Update guild state with stream information"""
         try:
             guild_state = self.state_manager.get_guild_state(guild_id, create_if_missing=True)
@@ -534,6 +534,34 @@ class StreamService:
             logger.error(f"Error getting active streams: {e}")
         
         return active_streams
+    
+    def get_active_audio_source(self, guild_id: int) -> Optional[discord.AudioSource]:
+        """
+        Get the active audio source for a guild.
+        
+        Args:
+            guild_id: Discord guild ID
+            
+        Returns:
+            Active audio source or None if not available
+        """
+        try:
+            # Get the bot instance from service registry
+            bot = self.service_registry.get_optional('bot')
+            if not bot:
+                return None
+            
+            # Find the guild
+            guild = discord.utils.get(bot.guilds, id=guild_id)
+            if not guild or not guild.voice_client:
+                return None
+            
+            # Return the current audio source
+            return getattr(guild.voice_client, 'source', None)
+            
+        except Exception as e:
+            logger.error(f"[{guild_id}]: Failed to get active audio source: {e}")
+            return None
     
     def get_stream_stats(self) -> Dict[str, Any]:
         """Get stream service statistics"""

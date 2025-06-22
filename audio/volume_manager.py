@@ -56,7 +56,7 @@ class VolumeManager(IVolumeManager):
     
     async def set_master_volume(self, guild_id: int, volume: float) -> bool:
         """
-        Set master volume with smooth transition.
+        Set master volume with smooth transition and real-time Discord audio update.
         
         Args:
             guild_id: Discord guild ID
@@ -84,6 +84,9 @@ class VolumeManager(IVolumeManager):
             guild_state = self.state_manager.get_guild_state(guild_id, create_if_missing=True)
             if guild_state and hasattr(guild_state, 'volume_level'):
                 guild_state.volume_level = volume
+            
+            # REAL-TIME DISCORD AUDIO UPDATE - This is the key fix!
+            await self._update_discord_audio_volume(guild_id, volume)
             
             # Emit volume change event
             await self.event_bus.emit_async(AUDIO_EVENTS['audio_volume_changed'],
@@ -477,6 +480,68 @@ class VolumeManager(IVolumeManager):
                 
         except Exception as e:
             logger.error(f"[{guild_id}]: Failed to update audio config: {e}")
+    
+    async def _update_discord_audio_volume(self, guild_id: int, volume: float) -> bool:
+        """
+        Update the Discord audio source volume in real-time.
+        
+        This is the key method that actually changes the audio output volume
+        by modifying the Discord PCMVolumeTransformer.volume property.
+        
+        Args:
+            guild_id: Discord guild ID
+            volume: New volume level (0.0 to 1.0)
+            
+        Returns:
+            True if Discord audio volume was updated successfully
+        """
+        try:
+            # Get the bot instance to access voice clients directly
+            import discord
+            
+            # Try to get bot from state manager or service registry
+            bot = None
+            try:
+                # Try to get from service registry if available
+                from core.service_registry import ServiceRegistry
+                registry = ServiceRegistry.get_instance()
+                if registry:
+                    bot = registry.get_service('bot')
+            except:
+                pass
+            
+            if not bot:
+                logger.debug(f"[{guild_id}]: Bot instance not available for real-time volume update")
+                return False
+            
+            # Find the guild
+            guild = discord.utils.get(bot.guilds, id=guild_id)
+            if not guild or not guild.voice_client:
+                logger.debug(f"[{guild_id}]: No voice client available for real-time volume update")
+                return False
+            
+            # Get the current audio source
+            voice_client = guild.voice_client
+            audio_source = getattr(voice_client, 'source', None)
+            
+            if not audio_source:
+                logger.debug(f"[{guild_id}]: No active audio source for real-time volume update")
+                return False
+            
+            # Check if the audio source supports volume control
+            if hasattr(audio_source, 'volume'):
+                # Update the Discord PCMVolumeTransformer volume property
+                old_volume = audio_source.volume
+                audio_source.volume = volume
+                logger.debug(f"[{guild_id}]: Updated Discord audio source volume from {old_volume:.2f} to {volume:.2f}")
+                return True
+            else:
+                logger.debug(f"[{guild_id}]: Audio source does not support real-time volume control")
+                return False
+                
+        except Exception as e:
+            logger.error(f"[{guild_id}]: Failed to update Discord audio volume: {e}")
+            return False
     
     def _calculate_variance(self, values: list) -> float:
         """Calculate variance of a list of values"""
