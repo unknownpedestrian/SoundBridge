@@ -252,8 +252,11 @@ class SoundBridgeApplication:
                 )
                 
                 # Register VolumeManager with custom factory to pass service_registry
-                def create_volume_manager(state_manager, event_bus, config_manager):
-                    return VolumeManager(state_manager, event_bus, config_manager, self.service_registry)
+                def create_volume_manager(state_manager: StateManager, event_bus: EventBus, 
+                                        config_manager: ConfigurationManager):
+                    # Capture service_registry in closure to fix scope issue
+                    service_registry = self.service_registry
+                    return VolumeManager(state_manager, event_bus, config_manager, service_registry)
                 
                 self.service_registry.register(
                     IVolumeManager, 

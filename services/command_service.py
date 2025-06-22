@@ -4,6 +4,7 @@ Command Service for SoundBridge
 
 import logging
 import math
+import asyncio
 from typing import Dict, Any, Optional
 import discord
 from discord.ext import commands
@@ -598,17 +599,23 @@ class CommandService:
                 
                 voice_client = interaction.guild.voice_client
                 
-                # Try advanced audio processing first
+                # Try advanced audio processing first with timeout protection
                 advanced_success = False
                 try:
                     from audio.interfaces import IVolumeManager
                     volume_manager = self.service_registry.get_optional(IVolumeManager)
                     
                     if volume_manager:
-                        advanced_success = await volume_manager.set_master_volume(interaction.guild_id, volume_float)
+                        # Add timeout protection to prevent blocking
+                        advanced_success = await asyncio.wait_for(
+                            volume_manager.set_master_volume(interaction.guild_id, volume_float),
+                            timeout=2.0
+                        )
                         if advanced_success:
                             await interaction.edit_original_response(content=f"🔊 Volume set to {level}% (Enhanced Audio)")
                             return
+                except asyncio.TimeoutError:
+                    logger.warning(f"[{interaction.guild_id}]: Advanced volume control timed out - using fallback")
                 except ImportError:
                     logger.debug("Advanced audio services not available - using fallback")
                 except Exception as e:
