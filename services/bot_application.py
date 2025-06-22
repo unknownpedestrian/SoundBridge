@@ -217,12 +217,32 @@ class SoundBridgeApplication:
     async def _register_audio_services(self) -> None:
         """Register audio processing services if available"""
         try:
+            # Check for required dependencies first
+            missing_deps = []
+            try:
+                import numpy
+            except ImportError:
+                missing_deps.append("numpy")
+            
+            try:
+                import scipy
+            except ImportError:
+                missing_deps.append("scipy")
+            
+            if missing_deps:
+                logger.warning(f"Audio processing disabled - missing dependencies: {', '.join(missing_deps)}")
+                logger.info("Install missing dependencies with: pip install numpy scipy")
+                return
+            
             # Try to register audio services
             try:
                 from audio.audio_processor import AudioProcessor
                 from audio.volume_manager import VolumeManager
                 from audio.effects_chain import EffectsChain
                 from audio.mixer import AudioMixer
+                
+                # Test that services can be imported and instantiated
+                logger.info("Registering audio processing services...")
                 
                 # Register audio services with proper interface-to-implementation mapping
                 self.service_registry.register(
@@ -249,13 +269,25 @@ class SoundBridgeApplication:
                     lifetime=ServiceLifetime.SINGLETON
                 )
                 
-                logger.debug("Audio processing services registered")
+                # Test that services can be resolved
+                try:
+                    volume_manager = self.service_registry.get(IVolumeManager)
+                    effects_chain = self.service_registry.get(IEffectsChain)
+                    audio_processor = self.service_registry.get(IAudioProcessor)
+                    logger.info("✅ Audio processing services registered and validated successfully")
+                except Exception as resolve_error:
+                    logger.error(f"❌ Audio services registered but failed validation: {resolve_error}")
+                    raise resolve_error
                 
             except ImportError as e:
-                logger.warning(f"Audio processing services not available - running without audio enhancement: {e}")
+                logger.warning(f"Audio processing services not available - missing audio modules: {e}")
+                logger.info("Audio commands will show 'not available' message")
+            except Exception as e:
+                logger.error(f"Failed to register audio services: {e}")
+                logger.info("Audio commands will show 'not available' message")
             
         except Exception as e:
-            logger.error(f"Failed to register audio services: {e}")
+            logger.error(f"Critical error in audio service registration: {e}")
             # Don't raise - audio enhancement is optional
     
     async def _register_sl_bridge_service(self) -> None:

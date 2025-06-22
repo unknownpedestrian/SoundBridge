@@ -371,6 +371,24 @@ class CommandService:
                     song_info = await self.stream_service.get_current_song(interaction.guild_id)
                     resp.append(f"\tCurrent song: {song_info.get('song') if song_info else 'Not Playing'}")
                     
+                    # Show volume level
+                    volume_level = getattr(guild_state, 'volume_level', 0.8) if guild_state else 0.8
+                    resp.append(f"\tVolume: {int(volume_level * 100)}%")
+                    
+                    # Show audio service status
+                    try:
+                        from audio.interfaces import IVolumeManager, IEffectsChain, IAudioProcessor
+                        volume_manager = self.service_registry.get_optional(IVolumeManager)
+                        effects_chain = self.service_registry.get_optional(IEffectsChain)
+                        audio_processor = self.service_registry.get_optional(IAudioProcessor)
+                        
+                        resp.append(f"\tAudio Services:")
+                        resp.append(f"\t  • Volume Manager: {'✅' if volume_manager else '❌'}")
+                        resp.append(f"\t  • Effects Chain: {'✅' if effects_chain else '❌'}")
+                        resp.append(f"\t  • Audio Processor: {'✅' if audio_processor else '❌'}")
+                    except ImportError:
+                        resp.append(f"\tAudio Services: ❌ Not Available")
+                    
                     if start_time:
                         from datetime import datetime, timezone
                         resp.append(f"\tRun time: {datetime.now(timezone.utc) - start_time}")
@@ -570,22 +588,51 @@ class CommandService:
                 # Convert to 0.0-1.0 range
                 volume_float = level / 100.0
                 
-                # Try to get audio services
+                # Check if bot is connected to voice
+                if not interaction.guild or not interaction.guild.voice_client:
+                    await interaction.response.send_message("❌ Bot is not connected to a voice channel. Start playing music first.", ephemeral=True)
+                    return
+                
+                voice_client = interaction.guild.voice_client
+                
+                # Try advanced audio processing first
+                advanced_success = False
                 try:
                     from audio.interfaces import IVolumeManager
                     volume_manager = self.service_registry.get_optional(IVolumeManager)
                     
                     if volume_manager:
-                        success = await volume_manager.set_master_volume(interaction.guild_id, volume_float)
-                        if success:
-                            await interaction.response.send_message(f"🔊 Volume set to {level}%")
-                        else:
-                            await interaction.response.send_message("❌ Failed to set volume.", ephemeral=True)
-                    else:
-                        await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
-                        
+                        advanced_success = await volume_manager.set_master_volume(interaction.guild_id, volume_float)
+                        if advanced_success:
+                            await interaction.response.send_message(f"🔊 Volume set to {level}% (Enhanced Audio)")
+                            return
                 except ImportError:
-                    await interaction.response.send_message("❌ Audio enhancement not available.", ephemeral=True)
+                    pass
+                except Exception as e:
+                    logger.warning(f"Advanced volume control failed: {e}")
+                
+                # Fallback to Discord's built-in volume control
+                try:
+                    if hasattr(voice_client, 'source') and voice_client.source:
+                        if hasattr(voice_client.source, 'volume'):
+                            voice_client.source.volume = volume_float
+                            await interaction.response.send_message(f"🔊 Volume set to {level}% (Basic)")
+                            
+                            # Store volume in guild state for persistence
+                            guild_state = self.state_manager.get_guild_state(interaction.guild_id, create_if_missing=True)
+                            if guild_state:
+                                guild_state.volume_level = volume_float
+                            return
+                        else:
+                            await interaction.response.send_message("❌ Current audio source doesn't support volume control.", ephemeral=True)
+                            return
+                    else:
+                        await interaction.response.send_message("❌ No audio source available for volume control.", ephemeral=True)
+                        return
+                        
+                except Exception as e:
+                    logger.error(f"Fallback volume control failed: {e}")
+                    await interaction.response.send_message("❌ Failed to set volume.", ephemeral=True)
                     
             except Exception as e:
                 await self.error_service.handle_command_error(interaction, e)

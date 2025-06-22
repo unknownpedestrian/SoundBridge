@@ -267,31 +267,48 @@ class StreamService:
             return None
     
     async def _create_audio_source(self, guild_id: int, stream_response: any, url: str) -> discord.AudioSource:
-        """Create audio source with optional processing and auto-detected FFmpeg"""
+        """Create audio source with optional processing and volume control"""
         try:
+            # Get current volume setting
+            guild_state = self.state_manager.get_guild_state(guild_id, create_if_missing=True)
+            volume_level = getattr(guild_state, 'volume_level', 0.8)  # Default to 80%
+            
             # Use enhanced audio processing if available
             if self.audio_processor:
-                # Create enhanced audio source with processing
+                logger.debug(f"[{guild_id}]: Creating enhanced audio source with volume {volume_level:.2f}")
+                # Create enhanced audio source with processing and volume
                 audio_source = create_ffmpeg_audio_source(
                     stream_response, 
                     pipe=True, 
-                    options="-filter:a loudnorm=I=-30:LRA=4:TP=-2"
+                    options=f"-filter:a loudnorm=I=-30:LRA=4:TP=-2,volume={volume_level}"
                 )
+                
+                # Wrap with PCMVolumeTransformer for real-time volume control
+                audio_source = discord.PCMVolumeTransformer(audio_source, volume=volume_level)
             else:
-                # Fallback to basic audio source with auto-detected FFmpeg
+                logger.debug(f"[{guild_id}]: Creating basic audio source with volume {volume_level:.2f}")
+                # Fallback to basic audio source with volume
                 audio_source = create_ffmpeg_audio_source(
                     stream_response, 
                     pipe=True, 
-                    options="-filter:a loudnorm=I=-30:LRA=4:TP=-2"
+                    options=f"-filter:a loudnorm=I=-30:LRA=4:TP=-2,volume={volume_level}"
                 )
+                
+                # Wrap with PCMVolumeTransformer for real-time volume control
+                audio_source = discord.PCMVolumeTransformer(audio_source, volume=volume_level)
             
+            logger.info(f"[{guild_id}]: Audio source created with volume {volume_level:.2f}")
             return audio_source
             
         except Exception as e:
-            logger.error(f"[{guild_id}]: Failed to create audio source with auto-detected FFmpeg: {e}")
-            # Fallback to basic source without processing
+            logger.error(f"[{guild_id}]: Failed to create audio source with volume control: {e}")
+            # Fallback to basic source without processing but with volume
             try:
-                return create_ffmpeg_audio_source(stream_response, pipe=True)
+                guild_state = self.state_manager.get_guild_state(guild_id, create_if_missing=True)
+                volume_level = getattr(guild_state, 'volume_level', 0.8)
+                
+                basic_source = create_ffmpeg_audio_source(stream_response, pipe=True)
+                return discord.PCMVolumeTransformer(basic_source, volume=volume_level)
             except Exception as fallback_error:
                 logger.error(f"[{guild_id}]: Fallback audio source creation failed: {fallback_error}")
                 raise RuntimeError(f"FFmpeg not available. Error: {fallback_error}")
