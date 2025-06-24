@@ -1,10 +1,10 @@
-# SoundBridge Second Life Bridge API Reference
+# BunBot Second Life Bridge API Reference
 
-Complete API documentation for SoundBridge's Second Life integration REST API server.
+Complete API documentation for BunBot's Second Life integration REST API server.
 
 ## Overview
 
-The SL Bridge API provides 24 REST endpoints across 5 categories for complete remote control of SoundBridge from Second Life and other external applications.
+The SL Bridge API provides 24 REST endpoints across 5 categories for complete remote control of BunBot from Second Life and other external applications.
 
 **Base URL**: `http://your-server.com/api/v1`  
 **Authentication**: JWT Bearer Token  
@@ -488,7 +488,7 @@ The SL Bridge API provides 24 REST endpoints across 5 categories for complete re
   "message": "Server info retrieved successfully",
   "data": {
     "version": "2.0.0",
-    "bot_name": "SoundBridge",
+    "bot_name": "BunBot",
     "features": {
       "audio_enhancement": true,
       "favorites": true,
@@ -1001,28 +1001,28 @@ play_favorite(integer favorite_id) {
 
 ### Official LSL Library
 
-SoundBridge provides an official LSL library for easy integration:
+BunBot provides an official LSL library for easy integration:
 
 ```lsl
-#include "soundbridge_api.lsl"
+#include "bunbot_api.lsl"
 
 // Initialize with your configuration
-soundbridge_init("http://your-server.com", "your_api_key", 123456789);
+bunbot_init("http://your-server.com", "your_api_key", 123456789);
 
 // Simple stream control
-soundbridge_play("http://stream.example.com");
-soundbridge_stop();
-soundbridge_volume(75);
+bunbot_play("http://stream.example.com");
+bunbot_stop();
+bunbot_volume(75);
 
 // Favorites management
-soundbridge_add_favorite("http://stream.com", "My Station");
-soundbridge_play_favorite(1);
+bunbot_add_favorite("http://stream.com", "My Station");
+bunbot_play_favorite(1);
 ```
 
 ### Community SDKs
 
-- **Python SDK**: `pip install soundbridge-api`
-- **JavaScript SDK**: `npm install soundbridge-client`
-- **PHP SDK**: `composer require soundbridge/api-client`
+- **Python SDK**: `pip install bunbot-api`
+- **JavaScript SDK**: `npm install bunbot-client`
+- **PHP SDK**: `composer require bunbot/api-client`
 
 ---

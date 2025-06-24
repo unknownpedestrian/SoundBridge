@@ -1,6 +1,6 @@
-# Privacy Policy for SoundBridge!
+# Privacy Policy for BunBot!
 
-This Privacy Policy governs the collection, use, and sharing of personal information by SoundBridge!, a Discord bot developed by C.Gillen and D.Jacobs. By using SoundBridge!, you agree to the terms of this Privacy Policy.
+This Privacy Policy governs the collection, use, and sharing of personal information by BunBot!, a Discord bot developed by C.Gillen and D.Jacobs. By using BunBot!, you agree to the terms of this Privacy Policy.
 
 # Information We Collect
 
@@ -8,7 +8,7 @@ We collect information that you provide to us through your use of the bot, such 
 
 # How We Use Your Information
 
-We use your information to operate and improve SoundBridge!, including to provide support and respond to your requests. We may also use your information to develop new features or services, to conduct research and analytics, and to comply with legal obligations.
+We use your information to operate and improve BunBot!, including to provide support and respond to your requests. We may also use your information to develop new features or services, to conduct research and analytics, and to comply with legal obligations.
 
 # Sharing Your Information
 
@@ -16,7 +16,7 @@ We do not sell or share your personal information with third parties. However, w
 
 # Data Retention
 
-We retain your information for as long as necessary to provide SoundBridge’s services or as required by law. We will delete your information upon your request or when it is no longer needed.
+We retain your information for as long as necessary to provide BunBot's services or as required by law. We will delete your information upon your request or when it is no longer needed.
 
 # Data Security
 
@@ -24,11 +24,11 @@ We take reasonable measures to protect your information from unauthorized access
 
 # Changes to this Policy
 
-We may update this Privacy Policy from time to time, and we will post the updated policy on this github repository. Your continued use of SoundBridge after we make changes to this policy indicates your acceptance of the revised policy.
+We may update this Privacy Policy from time to time, and we will post the updated policy on this github repository. Your continued use of BunBot after we make changes to this policy indicates your acceptance of the revised policy.
 
 # Contact Us
 
-If you have any questions or concerns about this Privacy Policy, please contact us at SoundBridgebilling@gmail.com.
+If you have any questions or concerns about this Privacy Policy, please contact us at BunBotbilling@gmail.com.
 
 # Effective Date
 

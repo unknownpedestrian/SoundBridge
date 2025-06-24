@@ -1,5 +1,5 @@
 """
-Favorites Service for SoundBridge
+Favorites Service for BunBot
 """
 
 import logging
@@ -14,7 +14,7 @@ logger = logging.getLogger('services.favorites_service')
 
 class FavoritesService:
     """
-    Favorites management service for SoundBridge.
+    Favorites management service for BunBot.
     
     Provides database-backed favorites management with stream validation.
     """
@@ -25,7 +25,7 @@ class FavoritesService:
         self.event_bus = service_registry.get(EventBus)
         
         # Initialize database
-        self.db_path = "soundbridge.db"
+        self.db_path = "bunbot.db"
         self._init_database()
         
         logger.info("FavoritesService initialized")
@@ -57,7 +57,7 @@ class FavoritesService:
                     logger.info("Added added_date column to existing favorites table")
                 
                 conn.commit()
-                logger.info("Initialized SQLite database at SoundBridge.db")
+                logger.info("Initialized SQLite database at bunbot.db")
         except Exception as e:
             logger.error(f"Failed to initialize database: {e}")
             raise

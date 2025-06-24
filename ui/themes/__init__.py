@@ -1,5 +1,5 @@
 """
-Theme System for SoundBridge UI
+Theme System for BunBot UI
 """
 
 from .theme_manager import ThemeManager

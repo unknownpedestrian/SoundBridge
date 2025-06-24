@@ -1,5 +1,5 @@
 """
-Service Registry - Dependency Injection Container for SoundBridge
+Service Registry - Dependency Injection Container for BunBot
 """
 
 import logging

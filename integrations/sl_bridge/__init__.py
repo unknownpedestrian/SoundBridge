@@ -1,5 +1,5 @@
 """
-Second Life Bridge Integration for SoundBridge
+Second Life Bridge Integration for BunBot
 
 Provides FastAPI-based HTTP bridge server for Second Life integration,
 enabling full cross-platform control and synchronization.

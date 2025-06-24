@@ -1,5 +1,5 @@
 """
-Metrics Collection System for SoundBridge Monitoring
+Metrics Collection System for BunBot Monitoring
 """
 
 import logging
@@ -19,7 +19,7 @@ logger = logging.getLogger('discord.monitoring.metrics_collector')
 
 class MetricsCollector(IMetricsCollector):
     """
-    Comprehensive metrics collection service for SoundBridge.
+    Comprehensive metrics collection service for BunBot.
     
     Collects performance data from system resources and individual
     guild streams, stores historical data, and emits events when

@@ -115,7 +115,7 @@ class EventBridge:
                 'event_name': event_name,
                 'data': data,
                 'timestamp': datetime.now().isoformat(),
-                'source': 'SoundBridge_internal'
+                'source': 'BunBot_internal'
             }
             
             # Queue event for processing

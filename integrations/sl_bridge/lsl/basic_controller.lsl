@@ -1,8 +1,8 @@
 //
-// SoundBridge Basic Controller Script
+// BunBot Basic Controller Script
 // Simple Second Life script for controlling Discord radio bot
 //
-// Place this script in any object to control SoundBridge from Second Life
+// Place this script in any object to control BunBot from Second Life
 // Configure the settings below and touch the object to use
 //
 
@@ -10,8 +10,8 @@
 // CONFIGURATION - EDIT THESE SETTINGS
 // ===========================================
 
-// Your SoundBridge server configuration
-string BOT_API_URL = "http://your-SoundBridge-server.com:8080/api/v1";
+// Your BunBot server configuration
+string BOT_API_URL = "http://your-BunBot-server.com:8080/api/v1";
 string API_KEY = "dev_key_123";  // Replace with your actual API key
 integer GUILD_ID = 123456789;    // Replace with your Discord guild ID
 
@@ -46,7 +46,7 @@ integer random_channel()
 // Display status to user
 show_status(key user)
 {
-    string status_text = "🎵 SoundBridge Status 🎵\n\n";
+    string status_text = "🎵 BunBot Status 🎵\n\n";
     status_text += "Playing: " + (string)is_playing + "\n";
     status_text += "Song: " + current_song + "\n";
     status_text += "Volume: " + (string)((integer)(current_volume * 100)) + "%\n";
@@ -205,7 +205,7 @@ show_menu(key user)
     listen_handle = llListen(menu_channel, "", user, "");
     llSetTimerEvent(30.0); // Menu timeout
     
-    string menu_text = "🎵 SoundBridge Controller 🎵\n\n";
+    string menu_text = "🎵 BunBot Controller 🎵\n\n";
     menu_text += "Choose an action:";
     
     llDialog(user, menu_text, menu_options, menu_channel);
@@ -235,12 +235,12 @@ default
 {
     state_entry()
     {
-        llOwnerSay("🎵 SoundBridge Basic Controller Ready!");
+        llOwnerSay("🎵 BunBot Basic Controller Ready!");
         llOwnerSay("📝 Edit script to configure API_KEY and GUILD_ID");
         llOwnerSay("👆 Touch to start controlling your Discord bot");
         
         // Set object text for easy identification
-        llSetText("🎵 SoundBridge Controller\nTouch to Control", <1,1,1>, 1.0);
+        llSetText("🎵 BunBot Controller\nTouch to Control", <1,1,1>, 1.0);
     }
     
     touch_start(integer total_number)

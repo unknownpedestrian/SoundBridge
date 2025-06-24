@@ -1,5 +1,5 @@
 """
-Status Indicator Components for SoundBridge Enhanced UI System
+Status Indicator Components for BunBot Enhanced UI System
 """
 
 import logging

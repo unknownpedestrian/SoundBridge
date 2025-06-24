@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: soundbridge-bot
+    name: bunbot-bot
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py

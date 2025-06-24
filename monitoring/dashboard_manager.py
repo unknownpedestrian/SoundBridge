@@ -1,5 +1,5 @@
 """
-Dashboard Manager for SoundBridge Monitoring System
+Dashboard Manager for BunBot Monitoring System
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger('discord.monitoring.dashboard_manager')
 
 class DashboardManager:
     """
-    Placeholder dashboard manager for SoundBridge monitoring system.
+    Placeholder dashboard manager for BunBot monitoring system.
     
     This is a stub implementation that preserves the import structure
     while the full interactive dashboard UI is pending implementation.

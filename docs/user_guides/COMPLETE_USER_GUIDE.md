@@ -1,6 +1,6 @@
-# SoundBridge Complete User Guide
+# BunBot Complete User Guide
 
-Welcome to SoundBridge - the advanced Discord radio streaming bot! This guide covers all features and commands available in the latest version.
+Welcome to BunBot - the advanced Discord radio streaming bot! This guide covers all features and commands available in the latest version.
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ Welcome to SoundBridge - the advanced Discord radio streaming bot! This guide co
 ## Getting Started
 
 ### Prerequisites
-- SoundBridge must be added to your Discord server with appropriate permissions
+- BunBot must be added to your Discord server with appropriate permissions
 - You need to be in a voice channel to start streaming
 - Bot requires Voice Channel permissions
 
@@ -110,7 +110,7 @@ Welcome to SoundBridge - the advanced Discord radio streaming bot! This guide co
 
 ## Audio Enhancement
 
-SoundBridge includes advanced audio processing features for enhanced listening experience.
+BunBot includes advanced audio processing features for enhanced listening experience.
 
 ### Volume Control
 
@@ -166,7 +166,7 @@ SoundBridge includes advanced audio processing features for enhanced listening e
 
 ## UI Features
 
-SoundBridge provides modern interactive UI components that enhance the user experience with clickable controls and real-time updates.
+BunBot provides modern interactive UI components that enhance the user experience with clickable controls and real-time updates.
 
 ### Button-Based Controls
 
@@ -188,12 +188,12 @@ SoundBridge provides modern interactive UI components that enhance the user expe
 
 ## Second Life Integration
 
-SoundBridge includes comprehensive Second Life integration through a REST API server and LSL script toolkit, enabling seamless control from virtual worlds.
+BunBot includes comprehensive Second Life integration through a REST API server and LSL script toolkit, enabling seamless control from virtual worlds.
 
 ### 🌐 **REST API Server**
 
 #### API Endpoints Overview
-SoundBridge provides **24 REST API endpoints** across 5 categories for complete remote control:
+BunBot provides **24 REST API endpoints** across 5 categories for complete remote control:
 
 **Stream Control (5 endpoints):**
 - `POST /api/v1/streams/play` - Start stream playback
@@ -254,7 +254,7 @@ llHTTPRequest("http://your-server.com/api/v1/streams/play",
 
 ### 📜 **LSL Script Toolkit**
 
-SoundBridge includes 4 ready-to-use LSL scripts for different Second Life integration scenarios:
+BunBot includes 4 ready-to-use LSL scripts for different Second Life integration scenarios:
 
 #### 1. Basic Controller (`basic_controller.lsl`)
 **Purpose**: Simple touch-based radio control object
@@ -346,7 +346,7 @@ float UPDATE_INTERVAL = 30.0; // seconds
 ### 🔄 **Real-Time Synchronization**
 
 #### WebSocket Events
-SoundBridge broadcasts real-time events to all connected SL objects:
+BunBot broadcasts real-time events to all connected SL objects:
 - **stream_started**: When playback begins
 - **stream_stopped**: When playback ends
 - **stream_changed**: When station changes
@@ -502,7 +502,7 @@ This will output detailed information about all HTTP requests and responses to h
 
 ## Deployment
 
-SoundBridge supports multiple deployment options for different use cases.
+BunBot supports multiple deployment options for different use cases.
 
 ### 🐳 **Docker Deployment (Recommended)**
 
@@ -512,8 +512,8 @@ Create a `docker-compose.yml` file:
 ```yaml
 version: '3.8'
 services:
-  soundbridge:
-    image: soundbridge:latest
+  bunbot:
+    image: bunbot:latest
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - SL_BRIDGE_ENABLED=true
@@ -566,7 +566,7 @@ TOTAL_SHARDS=1
 docker-compose up -d
 
 # View logs
-docker-compose logs -f soundbridge
+docker-compose logs -f bunbot
 
 # Update the bot
 docker-compose pull
@@ -584,8 +584,8 @@ For large Discord bots (2500+ guilds):
 ```yaml
 version: '3.8'
 services:
-  soundbridge-shard-0:
-    image: soundbridge:latest
+  bunbot-shard-0:
+    image: bunbot:latest
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - CLUSTER_ID=0
@@ -595,8 +595,8 @@ services:
     ports:
       - "8000:8000"
     
-  soundbridge-shard-1:
-    image: soundbridge:latest
+  bunbot-shard-1:
+    image: bunbot:latest
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - CLUSTER_ID=1
@@ -607,9 +607,9 @@ services:
 
 #### Load Balancer Configuration
 ```nginx
-upstream soundbridge_api {
-    server soundbridge-shard-0:8000 weight=1;
-    server soundbridge-shard-1:8001 weight=1;
+upstream bunbot_api {
+    server bunbot-shard-0:8000 weight=1;
+    server bunbot-shard-1:8001 weight=1;
 }
 
 server {
@@ -617,7 +617,7 @@ server {
     server_name api.your-domain.com;
     
     location /api/ {
-        proxy_pass http://soundbridge_api;
+        proxy_pass http://bunbot_api;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -657,13 +657,13 @@ curl http://localhost:9090/metrics
 #### Log Monitoring
 ```bash
 # View real-time logs
-docker-compose logs -f soundbridge
+docker-compose logs -f bunbot
 
 # Check for errors
-docker-compose logs soundbridge | grep ERROR
+docker-compose logs bunbot | grep ERROR
 
 # Monitor specific services
-docker-compose logs soundbridge | grep "sl_bridge"
+docker-compose logs bunbot | grep "sl_bridge"
 ```
 
 ### 🔧 **Manual Installation**
@@ -678,8 +678,8 @@ docker-compose logs soundbridge | grep "sl_bridge"
 #### Installation Steps
 ```bash
 # Clone repository
-git clone https://github.com/your-repo/soundbridge
-cd soundbridge
+git clone https://github.com/your-repo/bunbot
+cd bunbot
 
 # Create virtual environment
 python -m venv venv
@@ -706,19 +706,19 @@ python bot.py
 ```
 
 #### Systemd Service (Linux)
-Create `/etc/systemd/system/soundbridge.service`:
+Create `/etc/systemd/system/bunbot.service`:
 
 ```ini
 [Unit]
-Description=SoundBridge Discord Radio Bot
+Description=BunBot Discord Radio Bot
 After=network.target
 
 [Service]
 Type=simple
-User=soundbridge
-WorkingDirectory=/opt/soundbridge
-Environment=PATH=/opt/soundbridge/venv/bin
-ExecStart=/opt/soundbridge/venv/bin/python bot.py
+User=bunbot
+WorkingDirectory=/opt/bunbot
+Environment=PATH=/opt/bunbot/venv/bin
+ExecStart=/opt/bunbot/venv/bin/python bot.py
 Restart=always
 RestartSec=10
 
@@ -728,14 +728,14 @@ WantedBy=multi-user.target
 
 ```bash
 # Enable and start service
-sudo systemctl enable soundbridge
-sudo systemctl start soundbridge
+sudo systemctl enable bunbot
+sudo systemctl start bunbot
 
 # Check status
-sudo systemctl status soundbridge
+sudo systemctl status bunbot
 
 # View logs
-sudo journalctl -u soundbridge -f
+sudo journalctl -u bunbot -f
 ```
 
 ### 🛡️ **Security Configuration**
@@ -772,7 +772,7 @@ server {
 ```bash
 # Secure environment file
 chmod 600 .env
-chown soundbridge:soundbridge .env
+chown bunbot:bunbot .env
 
 # Use strong JWT secret
 JWT_SECRET_KEY=$(openssl rand -base64 32)
@@ -789,8 +789,8 @@ SL_BRIDGE_HOST=192.168.1.100
 ```yaml
 # Docker Compose with resource limits
 services:
-  soundbridge:
-    image: soundbridge:latest
+  bunbot:
+    image: bunbot:latest
     deploy:
       resources:
         limits:
@@ -832,7 +832,7 @@ SQLITE_JOURNAL_MODE=WAL
 #### Data Backup
 ```bash
 # Backup favorites database
-cp data/soundbridge.db backups/soundbridge-$(date +%Y%m%d).db
+cp data/bunbot.db backups/bunbot-$(date +%Y%m%d).db
 
 # Backup configuration
 cp .env backups/.env-$(date +%Y%m%d)
@@ -840,19 +840,19 @@ cp .env backups/.env-$(date +%Y%m%d)
 # Automated backup script
 #!/bin/bash
 DATE=$(date +%Y%m%d-%H%M%S)
-tar -czf backups/soundbridge-backup-$DATE.tar.gz data/ .env logs/
+tar -czf backups/bunbot-backup-$DATE.tar.gz data/ .env logs/
 ```
 
 #### Disaster Recovery
 ```bash
 # Restore from backup
-tar -xzf backups/soundbridge-backup-20241220.tar.gz
+tar -xzf backups/bunbot-backup-20241220.tar.gz
 
 # Restore database only
-cp backups/soundbridge-20241220.db data/soundbridge.db
+cp backups/bunbot-20241220.db data/bunbot.db
 
 # Restart services
-docker-compose restart soundbridge
+docker-compose restart bunbot
 ```
 
 ---
@@ -886,7 +886,7 @@ docker-compose restart soundbridge
 
 ### Error Recovery
 
-SoundBridge includes automatic error recovery for:
+BunBot includes automatic error recovery for:
 - **Stream Disconnections:** Auto-reconnection attempts
 - **Voice Client Issues:** Automatic voice client restoration
 - **State Desynchronization:** Smart state recovery

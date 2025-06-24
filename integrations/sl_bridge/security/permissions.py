@@ -58,7 +58,7 @@ class PermissionManager:
     Manages permission checking and validation for SL Bridge.
     
     Provides role-based access control with guild-specific permissions
-    and integration with the existing SoundBridge architecture.
+    and integration with the existing BunBot architecture.
     """
     
     def __init__(self, service_registry: ServiceRegistry):

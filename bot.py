@@ -1,5 +1,5 @@
 """
-SoundBridge - Discord Radio Bot
+BunBot - Discord Radio Bot
 
 Usage:
     python bot.py
@@ -24,13 +24,13 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
-logger = logging.getLogger('soundbridge')
+logger = logging.getLogger('bunbot')
 
 def main():
-    """Main entry point for SoundBridge"""
+    """Main entry point for BunBot"""
     try:
-        logger.info("Starting SoundBridge...")
-        logger.info("🎵 SoundBridge - Discord radio bot")
+        logger.info("Starting BunBot...")
+        logger.info("🎵 BunBot - Discord radio bot")
         
         # Start keep-alive server for cloud deployment
         try:

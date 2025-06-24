@@ -2,7 +2,7 @@
 JWT Token Manager for SL Bridge
 
 Handles JWT token generation, validation, and refresh
-Based on testdrivenio/fastapi-jwt patterns but adapted for SoundBridge
+Based on testdrivenio/fastapi-jwt patterns but adapted for BunBot
 """
 
 import os
@@ -24,7 +24,7 @@ class TokenManager:
     JWT token management for SL Bridge authentication.
     
     Provides secure token generation, validation, and refresh
-    with integration to SoundBridge's service architecture.
+    with integration to BunBot's service architecture.
     """
     
     def __init__(self, service_registry: ServiceRegistry):

@@ -1,5 +1,5 @@
 """
-Core UI Components for SoundBridge Enhanced UI System
+Core UI Components for BunBot Enhanced UI System
 
 Provides modular, reusable UI components that implement the IUIComponent interface.
 These components serve as building blocks for more complex views and interfaces.

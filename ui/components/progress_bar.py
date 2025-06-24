@@ -1,5 +1,5 @@
 """
-Progress Bar Components for SoundBridge Enhanced UI System
+Progress Bar Components for BunBot Enhanced UI System
 """
 
 import logging

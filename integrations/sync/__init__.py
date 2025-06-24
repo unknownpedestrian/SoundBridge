@@ -1,5 +1,5 @@
 """
-Cross-Platform Synchronization System for SoundBridge
+Cross-Platform Synchronization System for BunBot
 
 Provides real-time state synchronization between Discord and Second Life
 platforms, ensuring consistent bot state and functionality across both interfaces.

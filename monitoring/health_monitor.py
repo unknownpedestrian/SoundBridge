@@ -1,5 +1,5 @@
 """
-Health Monitoring System for SoundBridge
+Health Monitoring System for BunBot
 """
 
 import logging
@@ -17,7 +17,7 @@ logger = logging.getLogger('discord.monitoring.health_monitor')
 
 class HealthMonitor(IHealthMonitor):
     """
-    Comprehensive health monitoring service for SoundBridge.
+    Comprehensive health monitoring service for BunBot.
     
     Monitors both system-wide health and individual guild stream health,
     detecting issues and emitting events for automated recovery and alerting.

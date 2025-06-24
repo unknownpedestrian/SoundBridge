@@ -1,5 +1,5 @@
 """
-SoundBridge Application
+BunBot Application
 """
 
 import logging
@@ -25,11 +25,11 @@ from monitoring.interfaces import IHealthMonitor, IMetricsCollector, IAlertManag
 import urllib_hack
 from dotenv import load_dotenv
 
-logger = logging.getLogger('services.soundbridge_application')
+logger = logging.getLogger('services.bunbot_application')
 
-class SoundBridgeApplication:
+class BunBotApplication:
     """
-    Main SoundBridge application that orchestrates all services.
+    Main BunBot application that orchestrates all services.
     
     Provides clean separation between Discord.py bot management
     and business logic while maintaining the existing functionality.
@@ -55,12 +55,12 @@ class SoundBridgeApplication:
         self.total_clusters = int(os.environ.get('TOTAL_CLUSTERS', 1))
         self.total_shards = int(os.environ.get('TOTAL_SHARDS', 1))
         
-        logger.info("SoundBridgeApplication initialized")
+        logger.info("BunBotApplication initialized")
     
     async def initialize(self) -> None:
         """Initialize all services and register them with the service registry"""
         try:
-            logger.info("Initializing SoundBridgeApplication services...")
+            logger.info("Initializing BunBotApplication services...")
             
             # Register core services
             await self._register_core_services()
@@ -74,10 +74,10 @@ class SoundBridgeApplication:
             # Register monitoring services if available
             await self._register_monitoring_services()
             
-            logger.info("SoundBridgeApplication services initialized successfully")
+            logger.info("BunBotApplication services initialized successfully")
             
         except Exception as e:
-            logger.error(f"Failed to initialize SoundBridgeApplication: {e}")
+            logger.error(f"Failed to initialize BunBotApplication: {e}")
             raise
     
     async def run(self) -> None:
@@ -94,7 +94,7 @@ class SoundBridgeApplication:
             await self.bot.start(self.bot_token)
             
         except Exception as e:
-            logger.error(f"Failed to run SoundBridgeApplication: {e}")
+            logger.error(f"Failed to run BunBotApplication: {e}")
             raise
     
     def run_sync(self) -> None:
@@ -110,7 +110,7 @@ class SoundBridgeApplication:
     async def shutdown(self) -> None:
         """Gracefully shutdown the application"""
         try:
-            logger.info("Shutting down SoundBridgeApplication...")
+            logger.info("Shutting down BunBotApplication...")
             
             # Stop monitoring tasks
             monitoring_service = self.service_registry.get_optional(MonitoringService)
@@ -121,7 +121,7 @@ class SoundBridgeApplication:
             if self.bot:
                 await self.bot.close()
             
-            logger.info("SoundBridgeApplication shutdown complete")
+            logger.info("BunBotApplication shutdown complete")
             
         except Exception as e:
             logger.error(f"Error during shutdown: {e}")
@@ -491,7 +491,7 @@ class SoundBridgeApplication:
 
 
 # Factory function for creating the application
-def create_application() -> SoundBridgeApplication:
-    """Create and configure a new SoundBridgeApplication instance"""
+def create_application() -> BunBotApplication:
+    """Create and configure a new BunBotApplication instance"""
     service_registry = ServiceRegistry()
-    return SoundBridgeApplication(service_registry)
+    return BunBotApplication(service_registry)

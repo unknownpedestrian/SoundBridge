@@ -1,5 +1,5 @@
 """
-Webhook Manager for SoundBridge External Integrations
+Webhook Manager for BunBot External Integrations
 
 Provides comprehensive outbound webhook system for real-time notifications
 to external services and platforms.
@@ -66,7 +66,7 @@ class WebhookEvent:
     guild_id: Optional[int]
     timestamp: datetime
     data: Dict[str, Any]
-    source: str = "SoundBridge"
+    source: str = "BunBot"
     version: str = "1.0"
 
 @dataclass
@@ -411,7 +411,7 @@ class WebhookManager:
             # Prepare headers
             headers = {
                 "Content-Type": "application/json",
-                "User-Agent": "SoundBridge-Webhook/1.0"
+                "User-Agent": "BunBot-Webhook/1.0"
             }
             
             if webhook.headers:

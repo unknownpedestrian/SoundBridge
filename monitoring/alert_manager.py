@@ -1,5 +1,5 @@
 """
-Alert Management System for SoundBridge
+Alert Management System for BunBot
 """
 
 import logging
@@ -16,7 +16,7 @@ logger = logging.getLogger('discord.monitoring.alert_manager')
 
 class AlertManager(IAlertManager):
     """
-    Alert management service for SoundBridge notifications.
+    Alert management service for BunBot notifications.
     
     Sends notifications about health issues, recovery attempts,
     and system status to appropriate Discord channels.

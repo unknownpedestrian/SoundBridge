@@ -1,5 +1,5 @@
 """
-Command Service for SoundBridge
+Command Service for BunBot
 """
 
 import logging

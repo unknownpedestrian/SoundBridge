@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  soundbridge:
+  bunbot:
     build:
       context: .
       dockerfile: Dockerfile.production
-    container_name: soundbridge-production
+    container_name: bunbot-production
     restart: unless-stopped
     environment:
       # Discord Configuration
@@ -21,10 +21,10 @@ services:
       - SL_BRIDGE_ENABLED=true
       - SL_BRIDGE_HOST=0.0.0.0
       - SL_BRIDGE_PORT=8080
-      - SL_BRIDGE_SECRET=${SL_BRIDGE_SECRET:-soundbridge_secret_key}
+      - SL_BRIDGE_SECRET=${SL_BRIDGE_SECRET:-bunbot_secret_key}
       
       # Database Configuration
-      - DATABASE_URL=sqlite:///data/soundbridge.db
+      - DATABASE_URL=sqlite:///data/bunbot.db
       
       # Audio Configuration
       - AUDIO_QUALITY=high
@@ -39,12 +39,12 @@ services:
       - "8080:8080"  # SL Bridge API
     
     volumes:
-      - soundbridge_data:/app/data
-      - soundbridge_logs:/app/logs
-      - soundbridge_temp:/app/temp
+      - bunbot_data:/app/data
+      - bunbot_logs:/app/logs
+      - bunbot_temp:/app/temp
     
     networks:
-      - soundbridge_network
+      - bunbot_network
     
     healthcheck:
       test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/api/v1/status/health', timeout=5)"]
@@ -73,13 +73,13 @@ services:
   # Optional: Redis for caching (if needed)
   redis:
     image: redis:7-alpine
-    container_name: soundbridge-redis
+    container_name: bunbot-redis
     restart: unless-stopped
     command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
     volumes:
-      - soundbridge_redis:/data
+      - bunbot_redis:/data
     networks:
-      - soundbridge_network
+      - bunbot_network
     deploy:
       resources:
         limits:
@@ -91,7 +91,7 @@ services:
   # Optional: Monitoring with Prometheus (if needed)
   prometheus:
     image: prom/prometheus:latest
-    container_name: soundbridge-prometheus
+    container_name: bunbot-prometheus
     restart: unless-stopped
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -104,16 +104,16 @@ services:
       - "9090:9090"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - soundbridge_prometheus:/prometheus
+      - bunbot_prometheus:/prometheus
     networks:
-      - soundbridge_network
+      - bunbot_network
     profiles:
       - monitoring  # Only start with --profile monitoring
 
   # Optional: Grafana for visualization (if needed)
   grafana:
     image: grafana/grafana:latest
-    container_name: soundbridge-grafana
+    container_name: bunbot-grafana
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
@@ -121,11 +121,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - soundbridge_grafana:/var/lib/grafana
+      - bunbot_grafana:/var/lib/grafana
       - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
       - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
     networks:
-      - soundbridge_network
+      - bunbot_network
     depends_on:
       - prometheus
     profiles:
@@ -133,30 +133,30 @@ services:
 
 # Persistent volumes
 volumes:
-  soundbridge_data:
+  bunbot_data:
     driver: local
-    name: soundbridge_data
-  soundbridge_logs:
+    name: bunbot_data
+  bunbot_logs:
     driver: local
-    name: soundbridge_logs
-  soundbridge_temp:
+    name: bunbot_logs
+  bunbot_temp:
     driver: local
-    name: soundbridge_temp
-  soundbridge_redis:
+    name: bunbot_temp
+  bunbot_redis:
     driver: local
-    name: soundbridge_redis
-  soundbridge_prometheus:
+    name: bunbot_redis
+  bunbot_prometheus:
     driver: local
-    name: soundbridge_prometheus
-  soundbridge_grafana:
+    name: bunbot_prometheus
+  bunbot_grafana:
     driver: local
-    name: soundbridge_grafana
+    name: bunbot_grafana
 
 # Network configuration
 networks:
-  soundbridge_network:
+  bunbot_network:
     driver: bridge
-    name: soundbridge_network
+    name: bunbot_network
     ipam:
       config:
         - subnet: 172.20.0.0/16

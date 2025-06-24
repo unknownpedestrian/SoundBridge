@@ -1,5 +1,5 @@
 """
-State Synchronizer for Cross-Platform SoundBridge Integration
+State Synchronizer for Cross-Platform BunBot Integration
 """
 
 import logging

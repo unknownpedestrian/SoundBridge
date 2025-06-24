@@ -1,5 +1,5 @@
 """
-Enhanced Button Components for SoundBridge Enhanced UI System
+Enhanced Button Components for BunBot Enhanced UI System
 
 Provides various button implementations with theming, state management,
 and integration with  audio processing. Includes specialized

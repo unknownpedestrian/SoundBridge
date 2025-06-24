@@ -1,4 +1,4 @@
-# Production Dockerfile for SoundBridge
+# Production Dockerfile for BunBot
 # Multi-stage build for optimized production image
 
 # Build stage
@@ -47,17 +47,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=builder /opt/venv /opt/venv
 
 # Create non-root user for security
-RUN groupadd -r soundbridge && useradd -r -g soundbridge soundbridge
+RUN groupadd -r bunbot && useradd -r -g bunbot bunbot
 
 # Create application directory
 WORKDIR /app
 
 # Create necessary directories
 RUN mkdir -p /app/logs /app/data /app/temp && \
-    chown -R soundbridge:soundbridge /app
+    chown -R bunbot:bunbot /app
 
 # Copy application code
-COPY --chown=soundbridge:soundbridge . .
+COPY --chown=bunbot:bunbot . .
 
 # Create production config
 RUN echo "# Production configuration" > .env && \
@@ -68,7 +68,7 @@ RUN echo "# Production configuration" > .env && \
     echo "SL_BRIDGE_PORT=8080" >> .env
 
 # Switch to non-root user
-USER soundbridge
+USER bunbot
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \

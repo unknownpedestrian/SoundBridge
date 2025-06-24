@@ -1,5 +1,5 @@
 """
-Audio Processing System for SoundBridge
+Audio Processing System for BunBot
 
 Provides advanced audio processing capabilities including volume normalization,
 real-time effects, multi-stream mixing, and enhanced audio quality management.

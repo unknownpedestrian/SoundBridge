@@ -1,5 +1,5 @@
 """
-Event Bus System for SoundBridge
+Event Bus System for BunBot
 """
 
 import logging

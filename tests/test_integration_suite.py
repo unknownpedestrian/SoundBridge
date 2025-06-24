@@ -1,7 +1,7 @@
 """
 Integration Test Suite
 
-Comprehensive testing for SoundBridge's core functionality and integrations.
+Comprehensive testing for BunBot's core functionality and integrations.
 Tests critical paths without requiring documentation.
 """
 
@@ -367,8 +367,8 @@ class TestProductionReadiness:
         assert logger is not None
         
         # Test custom loggers
-        SoundBridge_logger = logging.getLogger('services.stream_service')
-        assert SoundBridge_logger is not None
+        BunBot_logger = logging.getLogger('services.stream_service')
+        assert BunBot_logger is not None
     
     def test_critical_imports(self):
         """Test that all critical modules can be imported"""

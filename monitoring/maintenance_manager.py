@@ -1,5 +1,5 @@
 """
-Maintenance Management System for SoundBridge
+Maintenance Management System for BunBot
 """
 
 import logging
@@ -14,7 +14,7 @@ logger = logging.getLogger('discord.monitoring.maintenance_manager')
 
 class MaintenanceManager(IMaintenanceManager):
     """
-    Maintenance management service for SoundBridge.
+    Maintenance management service for BunBot.
     
     Handles scheduling, announcing, and managing maintenance windows
     with comprehensive guild communication and status tracking.

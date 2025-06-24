@@ -1,5 +1,5 @@
 """
-Settings View for SoundBridge
+Settings View for BunBot
 """
 
 from .base_view import BaseView

@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Databases
-soundbridge.db
+bunbot.db
 
 # log
 log.txt

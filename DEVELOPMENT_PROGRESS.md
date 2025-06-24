@@ -1,7 +1,7 @@
-# SoundBridge Enhancement Project - Development Progress
+# BunBot Enhancement Project - Development Progress
 
 ## Project Overview
-Comprehensive enhancement of SoundBridge Discord radio streaming bot with advanced audio processing, Second Life integration, monitoring systems, and enhanced UI components.
+Comprehensive enhancement of BunBot Discord radio streaming bot with advanced audio processing, Second Life integration, monitoring systems, and enhanced UI components.
 
 ## Architecture Summary
 - **Current Architecture**: Monolithic bot.py with supporting modules

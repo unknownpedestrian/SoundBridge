@@ -1,5 +1,5 @@
 """
-Error Service for SoundBridge
+Error Service for BunBot
 """
 
 import logging
@@ -14,7 +14,7 @@ logger = logging.getLogger('services.error_service')
 
 class ErrorService:
     """
-    Centralized error handling service for SoundBridge.
+    Centralized error handling service for BunBot.
     
     Handles all Discord command errors, provides user-friendly messages,
     and integrates with monitoring for automatic recovery.

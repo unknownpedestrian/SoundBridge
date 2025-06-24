@@ -1,5 +1,5 @@
 """
-Abstract Interfaces and Data Structures for SoundBridge Monitoring System
+Abstract Interfaces and Data Structures for BunBot Monitoring System
 """
 
 import logging

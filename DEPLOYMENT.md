@@ -1,8 +1,8 @@
-# SoundBridge Deployment Guide
+# BunBot Deployment Guide
 
 ## Render Free Tier Deployment
 
-This guide will help you deploy SoundBridge to Render's free tier for 24/7 hosting.
+This guide will help you deploy BunBot to Render's free tier for 24/7 hosting.
 
 ### Prerequisites
 
@@ -38,10 +38,10 @@ git push origin main
 2. **Create New Web Service**
    - Click "New +" → "Web Service"
    - Connect your GitHub account if not already connected
-   - Select your SoundBridge repository
+   - Select your BunBot repository
 
 3. **Configure Service**
-   - **Name:** `soundbridge-bot` (or your preferred name)
+   - **Name:** `bunbot-bot` (or your preferred name)
    - **Environment:** `Python 3`
    - **Build Command:** `pip install -r requirements.txt`
    - **Start Command:** `python bot.py`
@@ -68,7 +68,7 @@ git push origin main
 
 1. **Check Service Status**
    - Service should show "Live" status
-   - Logs should show "SoundBridge - Discord radio bot"
+   - Logs should show "BunBot - Discord radio bot"
    - Keep-alive server should start on port 8080
 
 2. **Test Bot in Discord**
@@ -154,4 +154,4 @@ If you encounter issues:
 
 ---
 
-**Your SoundBridge bot is now ready for 24/7 cloud hosting! 🎵**
+**Your BunBot bot is now ready for 24/7 cloud hosting! 🎵**

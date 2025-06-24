@@ -1,5 +1,5 @@
 """
-Toggle Switch Components for SoundBridge Enhanced UI System
+Toggle Switch Components for BunBot Enhanced UI System
 """
 
 import logging

@@ -1,5 +1,5 @@
 """
-Modal Dialog Components for SoundBridge Enhanced UI System
+Modal Dialog Components for BunBot Enhanced UI System
 
 Provides modal dialog implementations for complex user input
 and confirmation workflows.

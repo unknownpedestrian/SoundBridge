@@ -1,5 +1,5 @@
 """
-Abstract Interfaces and Data Structures for SoundBridge Audio Processing
+Abstract Interfaces and Data Structures for BunBot Audio Processing
 """
 
 import logging

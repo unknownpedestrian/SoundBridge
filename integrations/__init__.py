@@ -1,5 +1,5 @@
 """
-External Integrations for SoundBridge
+External Integrations for BunBot
 
 Provides integration capabilities with external platforms and services.
 Built on the solid foundation of Phases 1-4 infrastructure.

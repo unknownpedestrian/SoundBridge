@@ -1,5 +1,5 @@
 """
-Base View for SoundBridge UI System
+Base View for BunBot UI System
 """
 
 import discord
@@ -10,7 +10,7 @@ logger = logging.getLogger('ui.views.base_view')
 
 class BaseView(discord.ui.View):
     """
-    Base view class for SoundBridge UI components.
+    Base view class for BunBot UI components.
     Provides common functionality for all views.
     """
     

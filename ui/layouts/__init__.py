@@ -1,5 +1,5 @@
 """
-Layout System for SoundBridge UI
+Layout System for BunBot UI
 """
 
 from .responsive_layout import ResponsiveLayout

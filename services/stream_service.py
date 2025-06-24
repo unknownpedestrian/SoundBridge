@@ -1,5 +1,5 @@
 """
-Stream Service for SoundBridge
+Stream Service for BunBot
 """
 
 import logging
@@ -21,7 +21,7 @@ logger = logging.getLogger('services.stream_service')
 
 class StreamService:
     """
-    Core stream management service for SoundBridge.
+    Core stream management service for BunBot.
     
     Handles all streaming operations including connection, playback,
     disconnection, and error recovery with enhanced audio processing.

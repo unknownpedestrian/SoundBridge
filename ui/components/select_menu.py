@@ -1,5 +1,5 @@
 """
-Enhanced Select Menu Components for SoundBridge Enhanced UI System
+Enhanced Select Menu Components for BunBot Enhanced UI System
 
 Provides dropdown selection components with search, categorization,
 and integration with audio processing.

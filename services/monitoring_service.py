@@ -1,5 +1,5 @@
 """
-Monitoring Service for SoundBridge
+Monitoring Service for BunBot
 """
 
 import logging
@@ -17,7 +17,7 @@ logger = logging.getLogger('services.monitoring_service')
 
 class MonitoringService:
     """
-    Background monitoring service for SoundBridge.
+    Background monitoring service for BunBot.
     
     Monitors active streams for metadata changes, health status,
     and automatically handles stream disconnections.

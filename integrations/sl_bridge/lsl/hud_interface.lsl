@@ -1,5 +1,5 @@
 //
-// SoundBridge HUD Interface Script
+// BunBot HUD Interface Script
 // Wearable radio control panel for Second Life
 //
 // Attach this script to a HUD object for convenient radio controls
@@ -10,8 +10,8 @@
 // CONFIGURATION - EDIT THESE SETTINGS
 // ===========================================
 
-// Your SoundBridge server configuration
-string BOT_API_URL = "http://your-SoundBridge-server.com:8080/api/v1";
+// Your BunBot server configuration
+string BOT_API_URL = "http://your-BunBot-server.com:8080/api/v1";
 string API_KEY = "dev_key_123";  // Replace with your actual API key
 integer GUILD_ID = 123456789;    // Replace with your Discord guild ID
 
@@ -281,7 +281,7 @@ default
 {
     state_entry()
     {
-        llOwnerSay("🎵 SoundBridge HUD Interface Ready!");
+        llOwnerSay("🎵 BunBot HUD Interface Ready!");
         llOwnerSay("📝 Edit script to configure API_KEY and GUILD_ID");
         
         // Initialize HUD display
@@ -560,7 +560,7 @@ default
         if (id != NULL_KEY)
         {
             // Attached to avatar
-            llOwnerSay("📱 SoundBridge HUD attached. Touch faces to control radio.");
+            llOwnerSay("📱 BunBot HUD attached. Touch faces to control radio.");
             update_hud_display();
             
             if (auto_update)

@@ -1,5 +1,5 @@
 """
-Utility modules for SoundBridge
+Utility modules for BunBot
 """
 
 from .ffmpeg_utils import (

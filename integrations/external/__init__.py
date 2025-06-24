@@ -1,5 +1,5 @@
 """
-External Integrations for SoundBridge
+External Integrations for BunBot
 
 Provides comprehensive external service integrations including webhooks,
 streaming services, social media, and analytics platforms.

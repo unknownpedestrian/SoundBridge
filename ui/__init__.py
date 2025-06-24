@@ -1,5 +1,5 @@
 """
-Enhanced UI System for SoundBridge
+Enhanced UI System for BunBot
 
 Provides modernized Discord UI components with real-time audio controls,
 mobile optimization, and Rich Presence integration. Built on the solid

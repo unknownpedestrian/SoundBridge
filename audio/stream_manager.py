@@ -1,5 +1,5 @@
 """
-Stream Management System for SoundBridge Audio Processing
+Stream Management System for BunBot Audio Processing
 """
 
 import logging
@@ -17,7 +17,7 @@ logger = logging.getLogger('discord.audio.stream_manager')
 
 class StreamManager(IStreamManager):
     """
-    Stream management service for SoundBridge audio processing.
+    Stream management service for BunBot audio processing.
     
     Handles connection management, buffering, and metadata extraction
     for audio streams. Provides reliable stream connectivity with
@@ -112,13 +112,13 @@ class StreamManager(IStreamManager):
             
             # Create request with appropriate headers
             request = urllib.request.Request(url)
-            request.add_header('User-Agent', 'SoundBridge/3.0 Audio Processor')
+            request.add_header('User-Agent', 'BunBot/3.0 Audio Processor')
             request.add_header('Icy-MetaData', '1')  # Request ICY metadata
             
             try:
                 # Test connection with HEAD request first
                 head_request = urllib.request.Request(url, method='HEAD')
-                head_request.add_header('User-Agent', 'SoundBridge/3.0 Audio Processor')
+                head_request.add_header('User-Agent', 'BunBot/3.0 Audio Processor')
                 
                 response = urllib.request.urlopen(head_request, timeout=timeout)
                 response.close()
@@ -245,7 +245,7 @@ class StreamManager(IStreamManager):
         try:
             # Create request with appropriate headers
             request = urllib.request.Request(url)
-            request.add_header('User-Agent', 'SoundBridge/3.0 Audio Processor')
+            request.add_header('User-Agent', 'BunBot/3.0 Audio Processor')
             request.add_header('Icy-MetaData', '1')
             
             # Open connection

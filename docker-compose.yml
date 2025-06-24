@@ -1,14 +1,14 @@
 services:
-  soundbridge:
+  bunbot:
     build: .
-    container_name: 'soundbridge'
+    container_name: 'bunbot'
     volumes:
       - ./:/app
     environment:
       - CLUSTER_ID=0
-  soundbridge1:
-    container_name: 'soundbridge1'
+  bunbot1:
+    container_name: 'bunbot1'
     extends:
-      service: soundbridge
+      service: bunbot
     environment:
       - CLUSTER_ID=1

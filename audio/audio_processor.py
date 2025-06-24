@@ -1,5 +1,5 @@
 """
-Core Audio Processing Engine for SoundBridge
+Core Audio Processing Engine for BunBot
 """
 
 import logging
@@ -20,7 +20,7 @@ logger = logging.getLogger('discord.audio.audio_processor')
 
 class AudioProcessor(IAudioProcessor):
     """
-    Core audio processing engine for SoundBridge.
+    Core audio processing engine for BunBot.
     
     Handles real-time audio processing including volume control, normalization,
     effects processing, and quality management. Integrates with the existing

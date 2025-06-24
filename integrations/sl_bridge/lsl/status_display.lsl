@@ -1,5 +1,5 @@
 //
-// SoundBridge Status Display Script
+// BunBot Status Display Script
 // Real-time "Now Playing" display board for Second Life
 //
 // Place this script in a display object to show current bot status
@@ -10,13 +10,13 @@
 // CONFIGURATION - EDIT THESE SETTINGS
 // ===========================================
 
-// Your SoundBridge server configuration
-string BOT_API_URL = "http://your-SoundBridge-server.com:8080/api/v1";
+// Your BunBot server configuration
+string BOT_API_URL = "http://your-BunBot-server.com:8080/api/v1";
 string API_KEY = "dev_key_123";  // Replace with your actual API key
 integer GUILD_ID = 123456789;    // Replace with your Discord guild ID
 
 // Display configuration
-string DISPLAY_TITLE = "🎵 SoundBridge Status 🎵";
+string DISPLAY_TITLE = "🎵 BunBot Status 🎵";
 vector ACTIVE_COLOR = <0.0, 1.0, 0.5>;  // Green when playing
 vector IDLE_COLOR = <0.5, 0.5, 1.0>;    // Blue when idle
 vector ERROR_COLOR = <1.0, 0.0, 0.0>;   // Red when error
@@ -305,7 +305,7 @@ default
 {
     state_entry()
     {
-        llOwnerSay("📺 SoundBridge Status Display Ready!");
+        llOwnerSay("📺 BunBot Status Display Ready!");
         llOwnerSay("📝 Edit script to configure API_KEY and GUILD_ID");
         llOwnerSay("👆 Touch to cycle display modes");
         

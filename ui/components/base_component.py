@@ -1,5 +1,5 @@
 """
-Base Component Implementation for SoundBridge Enhanced UI System
+Base Component Implementation for BunBot Enhanced UI System
 
 Provides the abstract base implementation of IUIComponent interface
 that all UI components inherit from. Handles common functionality

@@ -1,5 +1,5 @@
 """
-Configuration Management System for SoundBridge
+Configuration Management System for BunBot
 """
 
 import os
@@ -69,7 +69,7 @@ if PYDANTIC_AVAILABLE:
         log_backup_count: int = 5
         
         # Database Configuration
-        database_path: str = "soundbridge.db"
+        database_path: str = "bunbot.db"
         database_url: Optional[str] = None  # For future cloud DB support
         
         # TLS Configuration
@@ -141,7 +141,7 @@ else:
             self.log_backup_count = kwargs.get('log_backup_count', 5)
             
             # Database Configuration
-            self.database_path = kwargs.get('database_path', 'soundbridge.db')
+            self.database_path = kwargs.get('database_path', 'bunbot.db')
             self.database_url = kwargs.get('database_url')
             
             # TLS Configuration
@@ -305,7 +305,7 @@ class ConfigurationManager:
         """Detect current environment from various sources"""
         
         # Check environment variable first
-        env_var = os.getenv('SOUNDBRIDGE_ENVIRONMENT', '').lower()
+        env_var = os.getenv('BUNBOT_ENVIRONMENT', '').lower()
         if env_var:
             try:
                 return Environment(env_var)
@@ -452,7 +452,7 @@ class ConfigurationManager:
                 self.log_file_path = kwargs.get('log_file_path', './log.txt')
                 self.log_max_bytes = kwargs.get('log_max_bytes', 32 * 1024 * 1024)
                 self.log_backup_count = kwargs.get('log_backup_count', 5)
-                self.database_path = kwargs.get('database_path', 'soundbridge.db')
+                self.database_path = kwargs.get('database_path', 'bunbot.db')
                 self.database_url = kwargs.get('database_url')
                 self.tls_verify = kwargs.get('tls_verify', True)
                 self.volume_normalization = kwargs.get('volume_normalization', True)

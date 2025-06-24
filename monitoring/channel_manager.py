@@ -1,5 +1,5 @@
 """
-Channel Management System for SoundBridge
+Channel Management System for BunBot
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger('discord.monitoring.channel_manager')
 
 class ChannelManager(IChannelManager):
     """
-    Channel management service for SoundBridge announcements.
+    Channel management service for BunBot announcements.
     
     Manages guild-specific announcement channel configurations
     with intelligent fallback logic for reliable message delivery.

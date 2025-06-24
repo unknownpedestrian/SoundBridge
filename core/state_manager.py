@@ -1,5 +1,5 @@
 """
-State Management System for SoundBridge
+State Management System for BunBot
 """
 
 import logging
@@ -123,7 +123,7 @@ class StateChangeEvent:
 
 class StateManager:
     """
-    Centralized state management system for SoundBridge.
+    Centralized state management system for BunBot.
     
     Replaces the global server_state dictionary with a type-safe,
     persistent, and event-driven state management system.

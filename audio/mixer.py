@@ -1,5 +1,5 @@
 """
-Multi-Stream Audio Mixer for SoundBridge Audio Processing
+Multi-Stream Audio Mixer for BunBot Audio Processing
 """
 
 import logging
@@ -19,7 +19,7 @@ logger = logging.getLogger('discord.audio.mixer')
 
 class AudioMixer(IAudioMixer):
     """
-    Multi-stream audio mixer for SoundBridge.
+    Multi-stream audio mixer for BunBot.
     
     Handles mixing of multiple audio streams with priority-based routing,
     crossfading capabilities, and dynamic stream management for enhanced

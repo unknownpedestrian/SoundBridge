@@ -1,5 +1,5 @@
 """
-Favorites View for SoundBridge
+Favorites View for BunBot
 
 Provides interactive favorites management with button-based interface,
 pagination, and real-time controls for adding/removing favorites.

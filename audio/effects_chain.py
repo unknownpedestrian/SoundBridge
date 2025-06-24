@@ -1,5 +1,5 @@
 """
-Audio Effects Chain for SoundBridge Audio Processing
+Audio Effects Chain for BunBot Audio Processing
 """
 
 import logging
@@ -19,7 +19,7 @@ logger = logging.getLogger('discord.audio.effects_chain')
 
 class EffectsChain(IEffectsChain):
     """
-    Audio effects processing chain for SoundBridge.
+    Audio effects processing chain for BunBot.
     
     Manages a dynamic chain of audio effects that can be applied in real-time
     to enhance audio quality and provide creative processing capabilities.

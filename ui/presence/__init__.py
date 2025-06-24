@@ -1,5 +1,5 @@
 """
-Rich Presence UI Components for SoundBridge
+Rich Presence UI Components for BunBot
 """
 
 # Simple stub classes for missing presence UI components

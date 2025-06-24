@@ -1,8 +1,8 @@
 """
-FFmpeg Utility Functions for SoundBridge
+FFmpeg Utility Functions for BunBot
 
 Provides auto-detection and configuration for FFmpeg executable
-to ensure SoundBridge works out-of-the-box without system configuration.
+to ensure BunBot works out-of-the-box without system configuration.
 """
 
 import os

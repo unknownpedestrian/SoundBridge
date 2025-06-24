@@ -2,7 +2,7 @@
 SLBridgeService - Service wrapper for SLBridgeServer integration
 
 Provides service-oriented integration of the SL Bridge server into the
-SoundBridge application architecture with proper lifecycle management.
+BunBot application architecture with proper lifecycle management.
 """
 
 import logging
@@ -23,7 +23,7 @@ class SLBridgeService:
     Service wrapper for SL Bridge integration.
     
     Manages the FastAPI server, state synchronization, and command processing
-    as an integrated service within the SoundBridge application.
+    as an integrated service within the BunBot application.
     """
     
     def __init__(self, service_registry: ServiceRegistry):

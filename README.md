@@ -1,298 +1,198 @@
-# 🎵 SoundBridge - Enterprise Discord Radio Streaming Platform
+# Bunbot - Simple Shoutcast Discord Bot!
+Bunbot! was originally a javascript-based bot, but has been rewritten in Python!
 
-**SoundBridge** is a Discord radio streaming bot with audio processing, Second Life virtual world integration, interactive UI components, and enterprise-grade monitoring. Built from the ground up with modern Python architecture, SoundBridge is a comprehensive audio platform designed for professional streaming and cross-platform integration.
+It's designed to play Shoutcast and some Icecast streams. It supports the following commands:
+- `/play`: Start playing the stream.
+- `/leave`: Leave the voice channel.
+- `/refresh`: Refresh the stream list.
+- `/song`: Display the current song playing.
+- `/support`: Learn where you can get help with the bot or how to help.
 
-Based on: https://github.com/CGillen/BunBotPython/
+# Don't want to self-host?
+No problem!
+you can add the bot to your discord here! [click me!](https://discord.com/oauth2/authorize?client_id=1385627473324019793&permissions=1168649901399936&scope=bot%20applications.commands)
 
-## ✨ **Key Features**
+EPIC translation done by: [CGillen](https://github.com/CGillen)!
 
-### 🎧 **Advanced Audio Streaming**
-- **High-Quality Streaming**: Shoutcast/Icecast support with FFmpeg processing
-- **Real-Time Audio Enhancement**: Volume normalization, auto-gain control, compression
-- **3-Band Equalizer**: Bass/Mid/Treble control with 9 built-in presets
-- **Adaptive Quality**: Automatic performance-based quality adjustment
-- **Stream Validation**: Automatic URL validation and metadata extraction
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J61BNDZO)
 
-### 📱 **Interactive User Interface**
-- **Modern Discord UI**: Button-based controls and interactive views
-- **Favorites Management**: Clickable favorites browser with pagination
-- **Real-Time Controls**: One-click volume, stop, refresh, and favorite actions
-- **Mobile Optimized**: Responsive design for all Discord clients
-- **Rich Embeds**: Professional visual presentation with live updates
+# So what's new?
+- `Implemented Shoutcast v1! 🎉`
+- `Support embed added!🎉`
+- `Added some checks for permissions or lack thereof`
+- `Added better handling for ~slower~ servers`
+- `Added some damage control if Discord were to drop the connection suddenly`
+- `Handles things better if the listening server were to crash suddenly`
+- `Volume normalization`
+- `More robust-er-er error handling`
+- `Slash commands`
+- `Better streamscrobbler for that sweet sweet metadata!`
+- `Changed audio receiver library to Discord integrated`
+- `Migrated to Python!`
+- `Hac-I mean added ICY support into urllib.py`
+- `Advanced 3-band equalizer with 9 built-in presets! 🎵`
+- `Real-time audio enhancement with auto-gain control and compression! 🔊`
+- `Interactive favorites system with clickable browser and pagination! ⭐`
+- `Complete Second Life integration with 24 REST API endpoints! 🌐`
+- `4 ready-to-use LSL scripts for in-world radio control! 📜`
+- `JWT authentication and role-based permissions! 🔐`
+- `Service-oriented architecture with dependency injection! 🏗️`
+- `Production-ready Docker deployment with health monitoring! 🐳`
+- `Auto-recovery and intelligent state management! 🔄`
+- `Performance monitoring with real-time metrics and alerting! 📊`
+- `Interactive Discord UI with button-based controls! 📱`
+- `Mobile-optimized responsive design for all Discord clients! 📲`
+- `Multi-shard clustering support for large Discord bots! ⚡`
+- `Adaptive quality adjustment based on system performance! 🎯`
+- `Cross-platform synchronization system! 🔗`
+- `Enterprise-grade error handling and logging! 📝`
+- `WebSocket events for real-time status updates! 🔄`
+- `Professional audio processing pipeline with FFmpeg! 🎚️`
+- `Comprehensive user guide and API documentation! 📚`
+- `Automated backup and disaster recovery systems! 💾`
+- `SSL/TLS support for secure API communications! 🛡️`
+- `Prometheus metrics and Grafana dashboard integration! 📈`
+- `Rate limiting and API abuse prevention! 🚦`
+- `Guild-specific settings and permissions management! 👥`
+- `Stream validation and metadata extraction! ✅`
+- `Custom EQ presets for different music genres! 🎼`
+- `Volume control with smooth transitions and persistence! 🔉`
+- `Rich embeds with professional visual presentation! 🎨`
+- `Command cooldowns and permission checks! ⏱️`
+- `Debug mode with detailed system information! 🔍`
+- `Force disconnect for handling stuck voice clients! 💪`
+- `Automatic stream reconnection and error recovery! 🔧`
+- `6 Bugs Squashed! 🎉`
 
-### 🌐 **Second Life Integration** 
+# Advanced Features
+
+## 🎧 Audio Enhancement
+- **3-Band Equalizer**: Bass/Mid/Treble control with `/eq` command
+- **EQ Presets**: 9 built-in presets (rock, pop, classical, bass-boost, etc.)
+- **Volume Control**: Master volume with `/volume` command
+- **Audio Processing**: Real-time normalization, auto-gain, and compression
+- **Quality Adaptation**: Automatic performance-based quality adjustment
+
+## ⭐ Favorites System
+- **Add Favorites**: `/set-favorite` with custom naming
+- **Interactive Browser**: `/favorites` with clickable play buttons
+- **Quick Play**: `/play-favorite` by number
+- **Management**: `/remove-favorite` with confirmation
+- **Mobile-Friendly**: `/list-favorites` for simple text display
+
+## 🌐 Second Life Integration
 - **24 REST API Endpoints**: Complete remote control from virtual worlds
-- **LSL Script Toolkit**: 4 ready-to-use Second Life scripts
-- **JWT Authentication**: Secure API access with role-based permissions
-- **Real-Time Sync**: WebSocket events for live status updates
-- **Touch Controls**: In-world radio objects, HUD interfaces, status displays
+- **4 LSL Scripts**: Basic controller, HUD interface, radio object, status display
+- **JWT Authentication**: Secure token-based access
+- **Real-Time Sync**: WebSocket events for live updates
+- **Touch Controls**: In-world radio objects and HUD interfaces
 
-### 🏗️ **Architecture**
-- **Service-Oriented Design**: Dependency injection with service registry
-- **Production Ready**: Docker deployment with health monitoring
-- **Auto-Recovery**: Error handling and state management
-- **Clustering Support**: Multi-shard deployment for large Discord bots
-- **Performance Monitoring**: Real-time metrics and alerting system
+## 📱 Interactive UI
+- **Button Controls**: Click-to-play favorites and quick actions
+- **Rich Embeds**: Professional visual presentation
+- **Real-Time Updates**: Live status and song information
+- **Mobile Optimized**: Responsive design for all Discord clients
 
----
+## 🏗️ Enterprise Architecture
+- **Service Registry**: Dependency injection container
+- **State Management**: Centralized guild state handling
+- **Event Bus**: Inter-service communication
+- **Error Recovery**: Intelligent auto-recovery mechanisms
+- **Health Monitoring**: Real-time system health checks
 
-## 🚀 **Quick Start**
+## 🐳 Production Deployment
+- **Docker Support**: Production-ready containerization
+- **Multi-Shard**: Horizontal scaling for large bots
+- **Load Balancing**: Automatic distribution across shards
+- **Health Checks**: Built-in monitoring and alerting
+- **SSL/TLS**: Secure API communications
 
-### **Option 1: Add to Your Server (Hosted)**
-[![Add SoundBridge](https://img.shields.io/badge/Add%20to%20Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1385627473324019793&permissions=1168649901399936&scope=bot%20applications.commands)
+# Quick Setup
 
-### **Option 2: Self-Host with Docker**
+## Docker (Recommended)
 ```bash
-# Clone the repository
-git clone https://github.com/your-repo/soundbridge
-cd soundbridge
+# Clone and setup
+git clone https://github.com/CGillen/BunBotPython
+cd BunBotPython
 
-# Set up environment
+# Configure environment
 cp .env.example .env
-# Edit .env with your bot token and configuration
+# Edit .env with your bot token
 
-# Run with Docker Compose
-docker-compose -f docker-compose.production.yml up -d
+# Run with Docker
+docker-compose up -d
 ```
 
-### **Option 3: Development Setup**
+## Manual Installation
 ```bash
 # Install dependencies
 pip install -r requirements.txt
 
-# Set environment variables
+# Set environment
 export BOT_TOKEN="your_discord_bot_token"
-export LOG_LEVEL="INFO"
 
 # Run the bot
 python bot.py
 ```
 
----
+# Commands Reference
 
-## 💬 **Discord Commands**
+## Core Commands
+- `/play <url>` - Start playing a stream
+- `/leave [force]` - Stop and leave voice channel
+- `/song` - Show current song info
+- `/refresh` - Refresh the stream connection
 
-### **🎵 Core Streaming**
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/play <url>` | Start playing a radio stream | `/play http://stream.example.com:8000` |
-| `/leave [force]` | Stop streaming and leave voice channel | `/leave` or `/leave force:True` |
-| `/song` | Display current song information | `/song` |
-| `/refresh` | Reconnect to refresh the stream | `/refresh` |
+## Favorites
+- `/set-favorite <url> [name]` - Add station to favorites
+- `/play-favorite <number>` - Play favorite by number
+- `/favorites` - Interactive favorites browser
+- `/list-favorites` - Simple text list
+- `/remove-favorite <number>` - Remove a favorite
 
-### **⭐ Favorites System**
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/set-favorite <url> [name]` | Add station to favorites | `/set-favorite http://stream.com Rock Station` |
-| `/play-favorite <number>` | Play favorite by number | `/play-favorite 1` |
-| `/favorites` | Interactive favorites browser | `/favorites` |
-| `/list-favorites` | Simple text list of favorites | `/list-favorites` |
-| `/remove-favorite <number>` | Remove a favorite station | `/remove-favorite 3` |
+## Audio Enhancement
+- `/volume <0-100>` - Set master volume
+- `/eq <bass> <mid> <treble>` - Adjust equalizer (-12 to +12 dB)
+- `/eq-preset <preset>` - Apply EQ preset
+- `/audio-info` - Show current audio settings
 
-### **🔊 Audio Enhancement**
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/volume <0-100>` | Set master volume | `/volume 75` |
-| `/eq <bass> <mid> <treble>` | Adjust equalizer (-12 to +12 dB) | `/eq bass:2.0 mid:-1.0 treble:3.5` |
-| `/eq-preset <preset>` | Apply EQ preset | `/eq-preset rock` |
-| `/audio-info` | Show current audio settings | `/audio-info` |
+## Utility
+- `/support` - Get help and support info
+- `/debug` - Show system information
 
-**Available EQ Presets**: `flat`, `rock`, `pop`, `classical`, `bass-boost`, `treble-boost`, `voice`
+# Second Life API
 
-### **🛠️ Utility Commands**
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/support` | Get help and support information | `/support` |
-| `/debug [options]` | Show debug information | `/debug page:1 per_page:5` |
-
----
-
-## 🌐 **Second Life Integration**
-
-SoundBridge includes a complete REST API for Second Life integration with **24 endpoints** across 5 categories:
-
-### **🎵 Stream Control API**
+## Stream Control
 - `POST /api/v1/streams/play` - Start playback
-- `POST /api/v1/streams/stop` - Stop playback  
-- `GET /api/v1/streams/status` - Get current status
+- `POST /api/v1/streams/stop` - Stop playback
+- `GET /api/v1/streams/status` - Get status
 - `POST /api/v1/streams/refresh` - Refresh connection
-- `GET /api/v1/streams/history` - Get stream history
 
-### **🔊 Audio Control API**
+## Audio Control
 - `POST /api/v1/audio/volume` - Set volume
 - `POST /api/v1/audio/eq` - Adjust equalizer
 - `POST /api/v1/audio/preset` - Apply EQ preset
 - `GET /api/v1/audio/info` - Get audio settings
 
-### **⭐ Favorites API**
+## Favorites Management
 - `GET /api/v1/favorites` - List favorites
 - `POST /api/v1/favorites` - Add favorite
-- `PUT /api/v1/favorites/{id}` - Update favorite
 - `DELETE /api/v1/favorites/{id}` - Remove favorite
 - `POST /api/v1/favorites/{id}/play` - Play favorite
 
-### **📊 Status & Settings APIs**
-- Health monitoring, server information, and configuration endpoints
+# LSL Scripts Included
+- **basic_controller.lsl** - Touch-based radio control
+- **hud_interface.lsl** - Wearable control panel
+- **radio_object.lsl** - In-world clickable radio
+- **status_display.lsl** - Real-time status board
 
-### **🔐 Security Features**
-- **JWT Authentication**: Secure token-based access
-- **Role-Based Permissions**: Granular access control  
-- **Rate Limiting**: Prevent API abuse
-- **CORS Support**: Web-based integrations
+# Support & Documentation
+- Use `/support` command in Discord
+- Complete User Guide: [docs/user_guides/COMPLETE_USER_GUIDE.md](docs/user_guides/COMPLETE_USER_GUIDE.md)
+- API Documentation: [docs/api/BUN_BRIDGE_API.md](docs/api/BUN_BRIDGE_API.md)
+- Issues: [GitHub Issues](https://github.com/CGillen/BunBotPython/issues)
 
-### **📜 LSL Scripts Included**
-- **Basic Controller**: Touch-based radio control
-- **HUD Interface**: Wearable control panel
-- **Radio Object**: In-world clickable radio
-- **Status Display**: Real-time status board
-
----
-
-## 🏗️ **Architecture Overview**
-
-### **Core Services**
-- **ServiceRegistry**: Dependency injection container
-- **StateManager**: Guild state management
-- **EventBus**: Inter-service communication
-- **ConfigurationManager**: Environment-based configuration
-
-### **Business Services**
-- **StreamService**: Audio streaming and control
-- **FavoritesService**: Station management
-- **AudioProcessor**: Real-time enhancement
-- **UIService**: Interactive interface management
-- **MonitoringService**: Health and performance tracking
-
-### **Integration Layer**
-- **SLBridgeService**: Second Life API server
-- **ErrorService**: Comprehensive error handling
-- **CommandService**: Discord command routing
-
----
-
-## 🐳 **Production Deployment**
-
-### **Docker Compose (Recommended)**
-```yaml
-version: '3.8'
-services:
-  soundbridge:
-    image: soundbridge:latest
-    environment:
-      - BOT_TOKEN=${BOT_TOKEN}
-      - SL_BRIDGE_ENABLED=true
-      - LOG_LEVEL=INFO
-    ports:
-      - "8000:8000"  # SL Bridge API
-    volumes:
-      - ./data:/app/data
-    restart: unless-stopped
-```
-
-### **Environment Variables**
-```bash
-# Required
-BOT_TOKEN=your_discord_bot_token
-
-# Optional Features  
-SL_BRIDGE_ENABLED=true
-SL_BRIDGE_HOST=0.0.0.0
-SL_BRIDGE_PORT=8000
-JWT_SECRET_KEY=your_secret_key
-
-# Performance
-LOG_LEVEL=INFO
-AUDIO_QUALITY=high
-CLUSTER_ID=0
-TOTAL_CLUSTERS=1
-```
-
-### **Health Monitoring**
-- Built-in health checks at `/health`
-- Prometheus metrics available
-- Discord alert notifications
-- Automatic recovery mechanisms
-
----
-
-## 📊 **Performance & Scalability**
-
-### **Audio Processing**
-- **Latency**: <50ms processing delay
-- **Quality Levels**: Low/Medium/High/Ultra adaptive
-- **Memory Usage**: <100MB per guild
-- **CPU Efficiency**: Auto-scaling based on load
-
-### **Clustering Support**
-- **Multi-Shard**: Horizontal scaling across shards
-- **Load Balancing**: Automatic distribution
-- **High Availability**: Redundant deployments
-- **Zero-Downtime**: Rolling updates supported
-
----
-
-## 🔧 **Configuration**
-
-### **Audio Settings**
-```python
-# Audio quality levels
-AUDIO_QUALITY = "high"  # low, medium, high, ultra
-SAMPLE_RATE = 48000
-CHANNELS = 2
-NORMALIZATION_TARGET = -23.0  # LUFS
-```
-
-### **Second Life Integration**
-```python
-# SL Bridge configuration
-SL_BRIDGE_ENABLED = True
-SL_BRIDGE_HOST = "0.0.0.0" 
-SL_BRIDGE_PORT = 8000
-JWT_EXPIRY_HOURS = 24
-RATE_LIMIT_REQUESTS = 100
-RATE_LIMIT_WINDOW = 60
-```
-
----
-
-## 🤝 **Support & Community**
-
-### **Get Help**
-- **Discord Support**: Use `/support` command in bot
-- **Documentation**: [Complete User Guide](docs/user_guides/COMPLETE_USER_GUIDE.md)
-- **Issues**: [GitHub Issues](https://github.com/your-repo/soundbridge/issues)
-- **API Docs**: [SoundBridge API Reference](docs/api/SL_BRIDGE_API.md)
-
-### **Contributing**
-- **Development Guide**: [DEVELOPMENT.md](docs/development/DEVELOPMENT.md)
-- **Architecture**: [ARCHITECTURE.md](docs/development/ARCHITECTURE.md) 
-- **Code of Conduct**: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-
-### **Donations**
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J61BNDZO)
-
----
-
-## 📈 **What's New**
-
-### **🎉 Major Features**
-- ✅ **Second Life Integration**: 24 REST API endpoints + LSL scripts
-- ✅ **Interactive UI**: Button-based controls and rich embeds
-- ✅ **Advanced Audio**: Real-time processing with EQ and effects
-- ✅ **Favorites System**: Full CRUD with interactive browser
-- ✅ **Production Ready**: Docker deployment with monitoring
-- ✅ **Service Registry**: Dependency injection architecture
-- ✅ **State Management**: Centralized guild state handling
-- ✅ **Error Recovery**: Intelligent auto-recovery mechanisms
-- ✅ **Performance**: Adaptive quality and resource management
-- ✅ **Security**: JWT authentication and rate limiting
-- ✅ **Monitoring**: Real-time health checks and alerting
-
-### **🚀 Commands**
-- ✅ **Volume Control**: Master volume with smooth transitions
-- ✅ **3-Band EQ**: Bass/Mid/Treble with 9 presets
-- ✅ **Audio Info**: Complete processing settings display
-- ✅ **Interactive Favorites**: Clickable favorites browser
-- ✅ **Stream History**: Recent playback tracking
-
----
+# Contributing
+- Development Guide: [DEVELOPMENT.md](docs/development/DEVELOPMENT.md)
+- Code of Conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- Architecture: [ARCHITECTURE.md](docs/development/ARCHITECTURE.md)

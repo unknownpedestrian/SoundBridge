@@ -1,5 +1,5 @@
 """
-Abstract Interfaces and Data Structures for SoundBridge Enhanced UI System
+Abstract Interfaces and Data Structures for BunBot Enhanced UI System
 
 Defines the core abstractions and data models used throughout the enhanced UI
 system to ensure consistent interfaces and enable dependency injection.

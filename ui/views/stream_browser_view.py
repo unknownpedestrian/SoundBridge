@@ -1,5 +1,5 @@
 """
-Stream Browser View for SoundBridge
+Stream Browser View for BunBot
 """
 
 from .base_view import BaseView

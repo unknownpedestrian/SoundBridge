@@ -1,5 +1,5 @@
 """
-UI Service for SoundBridge
+UI Service for BunBot
 """
 
 import logging
@@ -14,7 +14,7 @@ logger = logging.getLogger('services.ui_service')
 
 class UIService:
     """
-    Enhanced Discord UI service for SoundBridge.
+    Enhanced Discord UI service for BunBot.
     
     Provides rich embeds, interactive components, and consistent
     user interface elements across all bot interactions.
@@ -278,9 +278,9 @@ class UIService:
     async def create_support_embed(self) -> discord.Embed:
         """Create enhanced support information embed"""
         embed = discord.Embed(
-            title="SoundBridge Support",
+            title="BunBot Support",
             color=self.colors['info'],
-            description="Get help and support for SoundBridge"
+            description="Get help and support for BunBot"
         )
         
         embed.add_field(
@@ -291,17 +291,17 @@ class UIService:
         
         embed.add_field(
             name=f"{self.emojis['warning']} Found an issue?",
-            value="Please create a ticket at\nhttps://github.com/harp0030/SoundBridge/issues\nWe'll appreciate it!",
+            value="Please create a ticket at\nhttps://github.com/CGillen/BunBotPython/issues\nWe'll appreciate it!",
             inline=False
         )
         
         embed.add_field(
             name=f"{self.emojis['heart']} Like what we're doing?",
-            value="Support us on Ko-Fi: https://ko-fi.com/soundbridge",
+            value="Support us on Ko-Fi: https://ko-fi.com/bunbot",
             inline=False
         )
         
-        embed.set_footer(text="SoundBridge is open source under GPLv3 license")
+        embed.set_footer(text="BunBot is open source under GPLv3 license")
         
         return embed
     

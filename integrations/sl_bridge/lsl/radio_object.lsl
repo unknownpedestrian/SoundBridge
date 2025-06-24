@@ -1,5 +1,5 @@
 //
-// SoundBridge Radio Object Script
+// BunBot Radio Object Script
 // In-world clickable radio for Second Life
 //
 // Place this script in a radio object for easy public access
@@ -10,13 +10,13 @@
 // CONFIGURATION - EDIT THESE SETTINGS
 // ===========================================
 
-// Your SoundBridge server configuration
-string BOT_API_URL = "http://your-SoundBridge-server.com:8080/api/v1";
+// Your BunBot server configuration
+string BOT_API_URL = "http://your-BunBot-server.com:8080/api/v1";
 string API_KEY = "dev_key_123";  // Replace with your actual API key
 integer GUILD_ID = 123456789;    // Replace with your Discord guild ID
 
 // Radio object configuration
-string RADIO_NAME = "SoundBridge Radio";
+string RADIO_NAME = "BunBot Radio";
 vector IDLE_COLOR = <0.5, 0.5, 1.0>;    // Blue when idle
 vector PLAYING_COLOR = <0.0, 1.0, 0.0>; // Green when playing
 vector ERROR_COLOR = <1.0, 0.0, 0.0>;   // Red when error
@@ -363,7 +363,7 @@ default
 {
     state_entry()
     {
-        llOwnerSay("🎵 SoundBridge Radio Object Ready!");
+        llOwnerSay("🎵 BunBot Radio Object Ready!");
         llOwnerSay("📝 Edit script to configure API_KEY and GUILD_ID");
         
         // Initialize display

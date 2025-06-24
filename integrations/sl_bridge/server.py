@@ -2,7 +2,7 @@
 FastAPI Bridge Server for Second Life Integration
 
 Provides a comprehensive REST API server that enables Second Life objects
-to control SoundBridge with full feature parity to Discord commands.
+to control BunBot with full feature parity to Discord commands.
 
 Key Features:
 - RESTful API with comprehensive endpoints
@@ -100,8 +100,8 @@ class SLBridgeServer:
                 await self._shutdown()
             
             self.app = FastAPI(
-                title="SoundBridge Second Life Bridge",
-                description="REST API for Second Life integration with SoundBridge Discord radio bot",
+                title="BunBot Second Life Bridge",
+                description="REST API for Second Life integration with BunBot Discord radio bot",
                 version="1.0.0",
                 docs_url="/docs",
                 redoc_url="/redoc",
@@ -140,7 +140,7 @@ class SLBridgeServer:
             @self.app.get("/")
             async def root():
                 return {
-                    "service": "SoundBridge Second Life Bridge",
+                    "service": "BunBot Second Life Bridge",
                     "version": "1.0.0",
                     "status": "running" if self.is_running else "stopped",
                     "uptime_seconds": (datetime.now(timezone.utc) - self.start_time).total_seconds() if self.start_time else 0

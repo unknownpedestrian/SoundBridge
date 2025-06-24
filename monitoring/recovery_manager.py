@@ -1,5 +1,5 @@
 """
-Automated Recovery Manager for SoundBridge
+Automated Recovery Manager for BunBot
 """
 
 import logging
@@ -17,7 +17,7 @@ logger = logging.getLogger('discord.monitoring.recovery_manager')
 
 class RecoveryManager(IRecoveryManager):
     """
-    Automated recovery system for SoundBridge issues.
+    Automated recovery system for BunBot issues.
     
     Handles automatic recovery from common issues like stream disconnections,
     state desynchronization, and voice client problems. Provides configurable

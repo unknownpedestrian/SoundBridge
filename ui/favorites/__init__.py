@@ -1,5 +1,5 @@
 """
-Favorites UI Components for SoundBridge
+Favorites UI Components for BunBot
 """
 
 # Simple stub classes for missing favorites UI components

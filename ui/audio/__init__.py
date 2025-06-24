@@ -1,5 +1,5 @@
 """
-Audio UI Components for SoundBridge
+Audio UI Components for BunBot
 """
 
 # Simple stub classes for missing audio UI components

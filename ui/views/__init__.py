@@ -1,5 +1,5 @@
 """
-Enhanced Views for SoundBridge Enhanced UI System
+Enhanced Views for BunBot Enhanced UI System
 """
 
 from .base_view import BaseView

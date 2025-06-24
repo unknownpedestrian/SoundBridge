@@ -1,5 +1,5 @@
 """
-Theme Manager for SoundBridge UI
+Theme Manager for BunBot UI
 """
 
 import discord

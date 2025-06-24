@@ -31,7 +31,7 @@ class SLCommand:
 class SLCommandProcessor:
     """
     Processes commands from Second Life objects and routes them
-    to appropriate SoundBridge services.
+    to appropriate BunBot services.
     
     This provides a command-based interface that mirrors Discord
     slash commands but adapted for Second Life's HTTP request model.

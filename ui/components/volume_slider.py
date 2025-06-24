@@ -1,5 +1,5 @@
 """
-Volume Slider Components for SoundBridge Enhanced UI System
+Volume Slider Components for BunBot Enhanced UI System
 """
 
 import logging

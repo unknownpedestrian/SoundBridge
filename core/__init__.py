@@ -1,5 +1,5 @@
 """
-Core Infrastructure for SoundBridge
+Core Infrastructure for BunBot
 
 Provides foundational services including dependency injection, configuration management,
 state management, and event-driven communication for scalable, testable, and 

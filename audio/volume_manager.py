@@ -1,5 +1,5 @@
 """
-Volume Management System for SoundBridge Audio Processing
+Volume Management System for BunBot Audio Processing
 """
 
 import logging
@@ -21,7 +21,7 @@ logger = logging.getLogger('discord.audio.volume_manager')
 
 class VolumeManager(IVolumeManager):
     """
-    Advanced volume management for SoundBridge audio processing.
+    Advanced volume management for BunBot audio processing.
     
     Handles real-time volume control, normalization, automatic gain control,
     and dynamic range compression. Provides smooth volume transitions and

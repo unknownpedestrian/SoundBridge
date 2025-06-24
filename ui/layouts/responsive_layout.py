@@ -1,5 +1,5 @@
 """
-Responsive Layout System for SoundBridge UI
+Responsive Layout System for BunBot UI
 """
 
 class ResponsiveLayout:

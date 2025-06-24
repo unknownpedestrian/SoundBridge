@@ -1,5 +1,5 @@
 """
-Status View for SoundBridge
+Status View for BunBot
 """
 
 from .base_view import BaseView

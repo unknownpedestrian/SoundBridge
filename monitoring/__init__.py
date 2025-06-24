@@ -1,5 +1,5 @@
 """
-Monitoring & Maintenance Systems for SoundBridge
+Monitoring & Maintenance Systems for BunBot
 
 Provides comprehensive health monitoring, metrics collection, automated recovery,
 and maintenance announcement capabilities built on the core infrastructure.

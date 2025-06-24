@@ -1,5 +1,5 @@
 """
-Mobile UI Components for SoundBridge
+Mobile UI Components for BunBot
 """
 
 # Simple stub classes for missing mobile UI components

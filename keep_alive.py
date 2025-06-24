@@ -16,7 +16,7 @@ class HealthHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(b'{"status": "healthy", "service": "SoundBridge"}')
+            self.wfile.write(b'{"status": "healthy", "service": "BunBot"}')
         else:
             self.send_response(404)
             self.end_headers()
