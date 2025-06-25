@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import JSONResponse
 
 from core import ServiceRegistry
-from audio.interfaces import IAudioProcessor, IVolumeManager
+from audio import IAudioProcessor, IVolumeManager
 from ..adapters import StreamAdapter, AudioAdapter
 from ..middleware.auth_middleware import get_current_user, require_permission
 from ..models.auth_models import TokenData

@@ -89,6 +89,9 @@ class CommandService:
             # Audio processing commands
             await self._register_audio_commands(bot)
             
+            # Advanced audio processing commands (if scipy available)
+            await self._register_advanced_audio_commands(bot)
+            
             logger.info("All slash and prefix commands registered successfully")
             
         except Exception as e:
@@ -378,7 +381,7 @@ class CommandService:
                     
                     # Show audio service status
                     try:
-                        from audio.interfaces import IVolumeManager, IEffectsChain, IAudioProcessor
+                        from audio import IVolumeManager, IEffectsChain, IAudioProcessor
                         volume_manager = self.service_registry.get_optional(IVolumeManager)
                         effects_chain = self.service_registry.get_optional(IEffectsChain)
                         audio_processor = self.service_registry.get_optional(IAudioProcessor)
@@ -602,7 +605,7 @@ class CommandService:
                 # Try advanced audio processing first with timeout protection
                 advanced_success = False
                 try:
-                    from audio.interfaces import IVolumeManager
+                    from audio import IVolumeManager
                     volume_manager = self.service_registry.get_optional(IVolumeManager)
                     
                     if volume_manager:
@@ -670,7 +673,7 @@ class CommandService:
                 
                 # Try to get effects chain service
                 try:
-                    from audio.interfaces import IEffectsChain
+                    from audio import IEffectsChain
                     effects_chain = self.service_registry.get_optional(IEffectsChain)
                     
                     if effects_chain:
@@ -706,7 +709,7 @@ class CommandService:
                 
                 # Try to get effects chain service
                 try:
-                    from audio.interfaces import IEffectsChain
+                    from audio import IEffectsChain
                     effects_chain = self.service_registry.get_optional(IEffectsChain)
                     
                     if effects_chain:
@@ -747,7 +750,7 @@ class CommandService:
                 
                 # Try to get audio services
                 try:
-                    from audio.interfaces import IAudioProcessor, IVolumeManager, IEffectsChain
+                    from audio import IAudioProcessor, IVolumeManager, IEffectsChain
                     
                     audio_processor = self.service_registry.get_optional(IAudioProcessor)
                     volume_manager = self.service_registry.get_optional(IVolumeManager)
@@ -797,6 +800,25 @@ class CommandService:
         except ImportError:
             # Fallback validation
             return url.startswith(('http://', 'https://'))
+    
+    async def _register_advanced_audio_commands(self, bot: commands.AutoShardedBot) -> None:
+        """Register advanced audio processing commands (if scipy available)"""
+        try:
+            # Check if scipy is available
+            import numpy
+            import scipy
+            
+            # Import and register advanced audio commands
+            from .advanced_audio_commands import AdvancedAudioCommands
+            
+            # Add the cog
+            await bot.add_cog(AdvancedAudioCommands(bot, self.service_registry))
+            logger.info("Advanced audio commands registered successfully")
+            
+        except ImportError as e:
+            logger.info(f"Advanced audio commands not available - missing dependencies: {e}")
+        except Exception as e:
+            logger.warning(f"Failed to register advanced audio commands: {e}")
     
     def get_command_stats(self) -> Dict[str, Any]:
         """Get command service statistics"""

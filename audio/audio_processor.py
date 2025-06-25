@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 import numpy as np
 
 from core import StateManager, EventBus, ConfigurationManager
-from .interfaces import (
+from audio.interfaces import (
     IAudioProcessor, AudioConfig, AudioStream, AudioMetrics, ProcessedAudioSource,
     AudioQuality, AUDIO_EVENTS
 )

@@ -34,7 +34,7 @@ from monitoring.health_monitor import HealthMonitor
 from monitoring.metrics_collector import MetricsCollector
 
 # Phase 3 Audio
-from audio.interfaces import IAudioProcessor, IVolumeManager, IEffectsChain
+from audio import IAudioProcessor, IVolumeManager, IEffectsChain
 
 # SL Bridge Components
 from .middleware.auth_middleware import verify_token, SLAuthMiddleware

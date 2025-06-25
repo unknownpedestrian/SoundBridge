@@ -8,7 +8,7 @@ import logging
 from typing import Dict, Any, Optional
 
 from core import ServiceRegistry
-from audio.interfaces import IVolumeManager
+from audio import IVolumeManager
 
 logger = logging.getLogger('sl_bridge.adapters.audio')
 

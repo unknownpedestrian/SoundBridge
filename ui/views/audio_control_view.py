@@ -15,7 +15,7 @@ from discord.ext import commands
 
 from core import ServiceRegistry
 from ui.views.base_view import BaseView
-from audio.interfaces import IVolumeManager, IEffectsChain, IAudioProcessor
+from audio import IVolumeManager, IEffectsChain, IAudioProcessor
 
 logger = logging.getLogger('ui.views.audio_control')
 

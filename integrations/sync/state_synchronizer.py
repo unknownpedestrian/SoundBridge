@@ -16,7 +16,7 @@ from core.event_bus import EventBus
 from core.config_manager import ConfigurationManager
 
 # Phase 3 Audio
-from audio.interfaces import AudioConfig, AudioMetrics
+from audio import AudioConfig, AudioMetrics
 
 logger = logging.getLogger('sync.state_synchronizer')
 

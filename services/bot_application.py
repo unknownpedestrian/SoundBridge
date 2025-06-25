@@ -18,7 +18,7 @@ from .stream_service import StreamService
 from .favorites_service import FavoritesService
 from .command_service import CommandService
 from .monitoring_service import MonitoringService
-from audio.interfaces import IAudioProcessor, IVolumeManager, IEffectsChain, IAudioMixer
+from audio import IAudioProcessor, IVolumeManager, IEffectsChain, IAudioMixer
 from monitoring.interfaces import IHealthMonitor, IMetricsCollector, IAlertManager
 
 # Import existing modules we need to integrate
@@ -226,6 +226,7 @@ class BunBotApplication:
             
             try:
                 import scipy
+                import scipy.signal  # Specifically check for signal processing
             except ImportError:
                 missing_deps.append("scipy")
             
